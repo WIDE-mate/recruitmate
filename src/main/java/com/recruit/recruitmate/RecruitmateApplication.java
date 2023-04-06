@@ -10,5 +10,4 @@ public class RecruitmateApplication {
 		SpringApplication.run(RecruitmateApplication.class, args);
 	}
 
-
 }
