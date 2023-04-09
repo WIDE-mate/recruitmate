@@ -1,6 +1,22 @@
-# spring:
-#   datasource:
-#     driver-class-name: com.mysql.cj.jdbc.Driver
-#     url: ""
-#     username: root
-#     password: root
+spring:
+  profiles:
+    active: default
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: "jdbc:h2:tcp://localhost/~/test"
+    username: root
+    password: root
+resources:
+    static-locations: /resources/
+  jpa:
+    show-sql: true
+
+---
+spring:
+  profiles: release
+  # 여기는 서버에서 사용할 데이터베이스 주소 입력 똑같으면 안하셔도 됩니다.
+  # datasource:
+  #   driver-class-name: org.h2.Driver
+  #   url: "jdbc:h2:tcp://localhost/~/test"
+  #   username: root
+  #   password: root

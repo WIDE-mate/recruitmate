@@ -11,7 +11,6 @@ public class IndexController {
     @GetMapping("/")
     public String index(@Login SessionMember member){
         if (member == null || member.getId() == null) return "redirect:/login";
-        return "index.html";
+        return "./template/main.html";
     }
-
 }
