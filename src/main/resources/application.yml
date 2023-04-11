@@ -2,14 +2,15 @@ spring:
   profiles:
     active: default
   datasource:
-    driver-class-name: org.h2.Driver
-    url: "jdbc:h2:tcp://localhost/~/test"
-    username: root
-    password: root
-resources:
-    static-locations: /resources/
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # url: jdbc:mysql://{엔드포인트}:{포트번호}/{(초기)데이터베이스}
+    url: jdbc:mysql://recruit-mate.cvyja11dorx5.ap-northeast-2.rds.amazonaws.com:3306/recruit_mate
+    username: admin
+    password: admin1234
   jpa:
     show-sql: true
+resources:
+    static-locations: /resources/
 
 ---
 spring:
