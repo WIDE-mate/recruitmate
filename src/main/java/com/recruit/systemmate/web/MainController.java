@@ -10,7 +10,7 @@ public class MainController {
 
     @GetMapping("/")
     public String index(@Login SessionUser user){
-        if (user == null || user.getId() == null) return "redirect:/login";
+//        if (user == null || user.getId() == null) return "redirect:/login";
         return "main";
     }
 
