@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AspectConfig {
     
-    @Around("execution(* com.recruit.recruitmate..controller.*.*(..)")
+    @Around("execution(* com.recruit.usermate..controller.*.*(..))")
     public Object aroundRecruitmateController(ProceedingJoinPoint joinPoint){
         Object[] args = joinPoint.getArgs();
         HttpServletRequest request = null;
