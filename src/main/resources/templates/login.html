@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <script type="text/javascript" src="../components/js/component.js" defer></script>
+    <script src="../static/components/component.js" defer></script>
+    <link rel="stylesheet" href="../static/assets/css/component.css">
+    <link rel="stylesheet" href="../static/assets/css/login.css">
 </head>
 <body>
-    <h1>Login</h1>
+    <my-modal></my-modal>
+    <div class="login_logo">메이트 채용</div>
     <form id="loginForm">
         <label for="id">ID:</label>
         <input type="text" id="id" name="id"><br>
@@ -24,7 +27,8 @@
             event.preventDefault();
 
             const formData = new FormData(form);
-
+            const modal = document.querySelector("my-modal");
+            modal.loading();
             const datas = {};
             formData.forEach((value, key) => {
                 datas[key] = value;
@@ -44,11 +48,11 @@
                 if(data.result) {
                     location.href = "/";
                 } else {
-                    document.getElementById("result").innerHTML = "Login Failed. Please try again.";
+                    modal.message("\n\nLogin Failed. Please try again.")
                 }
             })
             .catch(error => {
-                document.getElementById("result").innerHTML = "An error occurred. Please try again later.";
+                modal.message("\n\nAn error occurred. Please try again later.")
                 console.error(error);
             });
         });
