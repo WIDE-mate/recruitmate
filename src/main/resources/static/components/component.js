@@ -13,6 +13,7 @@ function insertComponent(components){
 (function(){
     let components = []
     components.push("modal.js")
+    components.push("header.js")
 
     insertComponent(components);
 })();

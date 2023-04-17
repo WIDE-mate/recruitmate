@@ -2,11 +2,41 @@ html, body{
     margin: 0;
     padding: 0;
     text-align: center;
+    width: 100%;
+    height: 100%;
 }
-
+body{
+    display: flex;
+}
+.login_div{
+    width: 800px;
+    margin: auto;
+}
 .login_logo{
-    /*border: solid 1px aquamarine;*/
+    width: 400px;
+}
+.login_title{
+    font-size: 50px;
+    font-weight: 600;
+    margin: 20px 0 20px 0;
 }
 #loginForm{
-
+    width: 100%;
+}
+input{
+    width: 350px;
+    height: 40px;
+    font-size: 28px;
+    margin: 10px 0 10px 0;
+    border: 1px solid #AAAAAA;
+}
+button{
+    height: 40px;
+    width: 300px;
+    margin-top: 20px;
+    background-color: #c1bbd5;
+    border: 1px solid #AAAAAA;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
 }
