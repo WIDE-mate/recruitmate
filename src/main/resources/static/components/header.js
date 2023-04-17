@@ -22,7 +22,7 @@ class NavBox extends HTMLElement{
             const li = document.createElement("li")
             li.classList.add("nav_item")
             li.innerText = name;
-            li.addEventListener("click", function (e) {
+            li.addEventListener("click", function () {
                 location.replace(location);
             })
             ul.appendChild(li)
@@ -92,7 +92,7 @@ class TopHeader extends HTMLElement {
             })
             .catch(error => {
                 //에러면 모달에 에러뜸
-                document.querySelector("my-modal").message("\n\n화면 설정 중 에러가 발생했습니다.")
+                document.querySelector("my-modal").message("\n\n화면 설정 중 에러가 발생했습니다.\n" + error.toString())
             })
 
 

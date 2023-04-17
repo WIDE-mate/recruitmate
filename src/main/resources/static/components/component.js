@@ -8,7 +8,7 @@ function insertComponent(components){
         console.log(script)
         head.appendChild(script)
     }
-};
+}
 
 (function(){
     let components = []
