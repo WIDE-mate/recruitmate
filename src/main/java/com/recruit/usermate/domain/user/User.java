@@ -13,24 +13,24 @@ import java.util.Date;
 public class User {
 
     @Id
-    @Column(length = 20, nullable = false, name = "user_id")
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private int userId;
-    @Column
     private String id;
-    @Column
     private String password;
-    @Column
     private String name;
-    @Column
     private Date birth;
     @Column(length =  20)
     private String tel;
     @Column(length = 10, nullable = false)
 //    @Enumerated(EnumType.STRING)
     private String grade;
+    private String email;
+    private String addr;
+    private String addrDetail;
+    private String zip;
 
     @Builder
-    public User(int userId, String id, String password, String name, Date birth, String tel, String grade) {
+    public User(int userId, String id, String password, String name, Date birth, String tel, String grade, String email, String addr, String addrDetail, String zip) {
         this.userId = userId;
         this.id = id;
         this.password = password;
@@ -38,6 +38,9 @@ public class User {
         this.birth = birth;
         this.tel = tel;
         this.grade = grade;
+        this.email = email;
+        this.addr = addr;
+        this.addrDetail = addrDetail;
+        this.zip = zip;
     }
-
 }
