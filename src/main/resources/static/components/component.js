@@ -13,6 +13,7 @@ function insertComponent(components){
     let components = []
     components.push("modal.js")
     components.push("header.js")
+    components.push("flexitem.js")
 
     insertComponent(components);
 })();
