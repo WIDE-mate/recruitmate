@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @RestController
@@ -22,12 +23,13 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody LoginDTO dto){
-        // 세션 처리 필요
-        boolean flag = memberService.login(dto);
-        if(flag) {
-            httpSession.setAttribute("user", new SessionUser(dto.getId()));
-        }
-        return ResponseEntity.ok(Collections.singletonMap("result", flag));
+        LoginDTO result = memberService.login(dto);
+        if(Objects.isNull(result)) httpSession.setAttribute("user", new SessionUser(result));
+        return ResponseEntity.ok(Collections.singletonMap("result", Objects.isNull(result)));
     }
+
+    // 로그아웃을,, rest로,,?
+
+    // 탈퇴
 
 }
