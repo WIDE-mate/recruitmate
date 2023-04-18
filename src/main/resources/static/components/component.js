@@ -5,7 +5,6 @@ function insertComponent(components){
         const script = document.createElement("script");
         script.setAttribute("type", "text/javascript");
         script.setAttribute("src", "../static/components/" + component);
-        console.log(script)
         head.appendChild(script)
     }
 }
