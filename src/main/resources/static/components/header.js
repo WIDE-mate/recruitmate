@@ -3,7 +3,6 @@ class NavBox extends HTMLElement{
         super();
 
         const ul = document.createElement("ul")
-        ul.classList.add("nav_box")
         this.appendChild(ul)
     }
 
@@ -22,7 +21,8 @@ class NavBox extends HTMLElement{
             const li = document.createElement("li")
             li.classList.add("nav_item")
             li.innerText = name;
-            li.addEventListener("click", function () {
+            li.addEventListener("click", function (e) {
+                e.preventDefault()
                 location.replace(location);
             })
             ul.appendChild(li)
@@ -37,23 +37,30 @@ class MyProfile extends HTMLElement{
 
         const sign_up = document.createElement("div")
         sign_up.innerText = "회원가입"
-        sign_up.addEventListener("click", function () {
+        sign_up.addEventListener("click", function (e) {
             //회원가입 사이트로 이동
+            e.preventDefault()
             location.href = "/sign"
         })
         this.appendChild(sign_up)
 
         const sign_in = document.createElement("div")
         sign_in.innerText = "로그인"
-        sign_in.addEventListener("click", function () {
+        sign_in.addEventListener("click", function (e) {
             //로그인 사이트로 이동
+            e.preventDefault()
             location.href = "/login"
         })
         this.appendChild(sign_in)
 
         const div = document.createElement("div")
+        div.classList.add("profile_div")
         const img = document.createElement("img")
         img.classList.add("profile_img")
+        div.addEventListener("click", function (e) {
+            e.preventDefault()
+            location.href = "/myPage"
+        })
         div.appendChild(img)
         this.appendChild(div)
     }
@@ -73,6 +80,10 @@ class TopHeader extends HTMLElement {
         const logo = document.createElement("img")
         logo.classList.add("main_logo_min")
         logo.setAttribute("src", "../static/img/main_logo.png")
+        logo.addEventListener("click", function (e) {
+            e.preventDefault()
+            location.href = "/"
+        })
         this.appendChild(logo)
 
         let nav_box = '<nav-box class="nav_box"></nav-box>'

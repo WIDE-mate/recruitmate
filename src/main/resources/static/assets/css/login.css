@@ -28,15 +28,19 @@ input{
     height: 40px;
     font-size: 28px;
     margin: 10px 0 10px 0;
-    border: 1px solid #AAAAAA;
+    border: 3px solid #EEEEEE;
 }
 button{
     height: 40px;
     width: 300px;
     margin-top: 20px;
-    background-color: #c1bbd5;
-    border: 1px solid #AAAAAA;
+    background-color: #B2A4FF;
+    border: 1px solid #EEEEEE;
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 30px;
+    cursor: pointer;
+}
+button:hover{
+    color: #FDF7C3;
 }

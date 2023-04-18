@@ -10,7 +10,7 @@
 <body>
     <my-modal></my-modal>
     <div class="login_div">
-        <img class="login_logo" src="../static/img/login_logo.png" rel="login_logo">
+        <img class="login_logo" src="../static/img/login_logo.png" rel="login_logo" alt="">
         <div class="login_title">채용 사이트 제목</div>
         <form id="loginForm">
             <input type="text" id="id" name="id" placeholder="아이디"><br>
@@ -44,10 +44,17 @@
             .then(response => {
                 if (response.status == "403"){
                     modal.message("\n\n아이디 또는 비밀번호를 확인해주세요.")
+                    return "error"
                 }else if(response.status == "200"){
-                    location.href = "/";
+                    return response.json();
                 }else{
                     modal.message("\n\n네트워크 오류 입니다.\n잠시 후 다시 시도해주세요. ")
+                    return "error"
+                }
+            })
+            .then(data => {
+                if(data != "error"){
+                    //로그인 키 넘어올테니까 로컬스토리지에 저장.
                 }
             })
         });
