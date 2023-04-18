@@ -18,12 +18,12 @@ import java.util.Objects;
 @RestController
 public class LoginController {
 
-    private final UserService memberService;
+    private final UserService userService;
     private final HttpSession httpSession;
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody LoginDTO dto){
-        LoginDTO result = memberService.login(dto);
+        LoginDTO result = userService.login(dto);
         if(Objects.isNull(result)) httpSession.setAttribute("user", new SessionUser(result));
         return ResponseEntity.ok(Collections.singletonMap("result", Objects.isNull(result)));
     }

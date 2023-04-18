@@ -21,16 +21,15 @@ public class UserService {
     }
     
     // 비회원 로그인
-
-    @Transactional
-    public void withdraw(LoginDTO dto){
-        userRepository.deleteById(dto.getId());
-    }
+//    @Transactional
+//    public void withdraw(LoginDTO dto){
+////        userRepository.deleteById(dto.getId());
+//    }
 
     // 회원 가입
-    @Transactional
-    public void join(UserDTO dto){
-    }
+//    @Transactional
+//    public void join(UserDTO dto){
+//    }
     
     // 비회원 가입
     
