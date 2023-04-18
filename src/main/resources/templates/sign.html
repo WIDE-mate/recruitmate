@@ -8,6 +8,40 @@
 </head>
 <body>
     <my-modal></my-modal>
+    <form id="sign_form">
+        <input type="text" id="id" name="id" placeholder="아이디" dbcheck="false"><button type="button" id="id_check" onclick="idValidation()">중복확인</button><br>
+        <input type="password" id="password" name="password" placeholder="비밀번호"><br>
+        <input type="password" id="password_check" name="password_check" placeholder="비밀번호 확인"><label id="pass_check">소문자, 숫자, 특수문자를 포함한 8~15자리 입니다.</label><br>
+        <input type="text" id="name" name="name" placeholder="이름"><br>
+        <input type="text" id="tel" name="tel" placeholder="휴대폰번호"><br>
+        <input type="text" id="email" name="email" placeholder="이메일"><br>
+        <input type="text" id="zip" name="zip" placeholder="우편번호" disabled="true"><button type="button" onclick="addrBtn()">검색</button><br>
+        <input type="text" id="addr" name="addr" placeholder="주소" disabled="true"><br>
+        <input type="text" id="addr_datail" name="addr_datail" placeholder="상세주소"><br>
+
+        <button type="submit" id="sign_up" disabled="true">회원가입</button>
+    </form>
     <script type="text/javascript" src="../static/assets/js/sign.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function addrBtn(){
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+                    // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+                    const zip = document.getElementById("zip");
+                    const addr = document.getElementById("addr");
+                    const addr_datail = document.getElementById("addr_datail");
+                    zip.value = data.zonecode;
+                    if (data.userSelectedType === 'R'){
+                        addr.value = data.roadAddress;
+                    }else{
+                        addr.value = data.jibunAddress;
+                    }
+                    addr_datail.focus()
+                }
+            }).open();
+        }
+    </script>
 </body>
 </html>

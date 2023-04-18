@@ -30,6 +30,19 @@ input{
     margin: 10px 0 10px 0;
     border: 3px solid #EEEEEE;
 }
+input[type="checkbox"]{
+    margin: auto 20px auto auto;
+    width: 16px;
+    height: 16px;
+}
+label{
+    text-align: left;
+    font-size: 20px;
+    font-weight: 700;
+}
+#saveid{
+    width: 625px;
+}
 button{
     height: 40px;
     width: 300px;

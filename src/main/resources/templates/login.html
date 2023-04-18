@@ -15,11 +15,20 @@
         <form id="loginForm">
             <input type="text" id="id" name="id" placeholder="아이디"><br>
             <input type="password" id="password" name="password" placeholder="비밀번호"><br>
+            <div id="saveid"><label><input type="checkbox" name="saveid">아이디 기억하기</label></div><br>
             <button type="submit">Login</button>
         </form>
     </div>
     <div id="result"></div>
+    <script>
+        const saveid = document.getElementById("saveid").querySelector("input")
+        const savedId = window.localStorage.getItem("saved_login_id")
+        if(savedId != null){
+            saveid.checked = true
+            document.getElementById("id").value = savedId
+        }
 
+    </script>
     <script>
         const form = document.getElementById("loginForm");
 
@@ -28,6 +37,13 @@
 
             const formData = new FormData(form);
             const modal = document.querySelector("my-modal");
+            const id = document.getElementById("id")
+            const saveid = document.getElementById("saveid").querySelector("input")
+            if(saveid.checked){
+                window.localStorage.setItem("saved_login_id", id.value)
+            }else{
+                window.localStorage.removeItem("saved_login_id")
+            }
             modal.loading();
             const datas = {};
             formData.forEach((value, key) => {

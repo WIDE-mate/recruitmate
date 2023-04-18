@@ -106,7 +106,6 @@ class TopHeader extends HTMLElement {
                 document.querySelector("my-modal").message("\n\n화면 설정 중 에러가 발생했습니다.\n" + error.toString())
             })
 
-
         //프로필 사진 세팅
         const img_src = window.localStorage.getItem("profile_img")
         if (img_src == null || img_src == undefined){
