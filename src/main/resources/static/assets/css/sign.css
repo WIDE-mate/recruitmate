@@ -30,7 +30,8 @@ button{
     height: 40px;
     font-weight: 500;
     font-size: 20px;
-    background-color: #B2A4FF;
+    background-color: #FFB4B4;
+    color: #222222;
     border: 1px solid #AAAAAA;
     border-radius: 5px;
 }
@@ -40,5 +41,6 @@ button:hover{
 button[type="submit"]{
     width: 200px !important;
     margin: 20px 0 30px 125px !important;
+    background-color: #B2A4FF;
     border-radius: 0px !important;
 }
