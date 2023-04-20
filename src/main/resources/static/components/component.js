@@ -14,6 +14,7 @@ function insertComponent(components){
     components.push("modal.js")
     components.push("header.js")
     components.push("flexitem.js")
+    components.push("contentsList.js")
 
     insertComponent(components);
 })();

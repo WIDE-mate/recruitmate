@@ -1,3 +1,16 @@
+function logout(loginKey) {
+    fetch("?loginKey=" + loginKey)
+        .then(response =>  {
+            if (response.status.toString() == "200"){
+                let saved_login_id = window.localStorage.getItem("saved_login_id")
+                window.localStorage.clear();
+                window.localStorage.setItem("saved_login_id", saved_login_id)
+            }else{
+                //로그아웃 실패로직
+            }
+        })
+}
+
 class NavBox extends HTMLElement{
     constructor() {
         super();
@@ -45,12 +58,23 @@ class MyProfile extends HTMLElement{
         this.appendChild(sign_up)
 
         const sign_in = document.createElement("div")
-        sign_in.innerText = "로그인"
-        sign_in.addEventListener("click", function (e) {
-            //로그인 사이트로 이동
-            e.preventDefault()
-            location.href = "/login"
-        })
+        if(window.localStorage.getItem("loginKey").length != null){
+            sign_in.innerText = "로그아웃"
+            sign_in.addEventListener("click", function (e) {
+                //로그아웃
+                e.preventDefault()
+                logout(window.localStorage.getItem("loginKey"));
+                location.reload();
+            })
+        }else{
+            sign_in.innerText = "로그인"
+            sign_in.addEventListener("click", function (e) {
+                //로그인 사이트로 이동
+                e.preventDefault()
+                location.href = "/login"
+            })
+        }
+
         this.appendChild(sign_in)
 
         const div = document.createElement("div")

@@ -121,3 +121,18 @@ li{
     height: 100px;
     flex-grow: 1;
 }
+
+/* contents-list */
+.contents_list{
+    display: flex;
+    width: 100%;
+}
+.contents_list > div{
+    margin: 80px auto 0px;
+    width: 800px;
+    border: 1px solid #DDDDDD;
+}
+.contents_list > div > div{
+    margin: 10px;
+    width: 100%;
+}
