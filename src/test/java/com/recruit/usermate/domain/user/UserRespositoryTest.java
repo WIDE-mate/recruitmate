@@ -1,5 +1,8 @@
 package com.recruit.usermate.domain.user;
 
+import com.recruit.usermate.web.dto.LoginDTO;
+import com.recruit.usermate.web.dto.UserMapper;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +12,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class UserRespositoryTest {
 
     @Autowired
-    UserRepository memberRepository;
+    UserRepository userRepository;
+
+    @Autowired
+    UserMapper userMapper;
 
     @AfterEach
     public void cleanUp(){
-        memberRepository.deleteAll();
+        userRepository.deleteAll();
     }
 
     @Test
@@ -22,12 +28,12 @@ public class UserRespositoryTest {
         String id = "id";
         String password = "password";
 
-        memberRepository.save(User.builder().id(id).password(password).build());
+        userRepository.save(User.builder().id(id).password(password).grade("회원").build());
 
-//        //when
-//        String result = memberRepository.login(id,password);
-//
-//        //Then
-//        Assertions.assertThat(id).isEqualTo(result);
+        //when
+        LoginDTO dto = userMapper.toLoginDTO(userRepository.findByIdAndPassword("ids",password));
+
+        //Then
+        Assertions.assertThat(dto).withFailMessage("DTO is null!!").isNotNull();
     }
 }

@@ -5,6 +5,7 @@ import com.recruit.usermate.service.user.UserService;
 import com.recruit.usermate.web.dto.LoginDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,12 +25,14 @@ public class LoginController {
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody LoginDTO dto){
         LoginDTO result = userService.login(dto);
-        if(Objects.isNull(result)) httpSession.setAttribute("user", new SessionUser(result));
+        if(result != null) httpSession.setAttribute("user", new SessionUser(result));
+        // 로그인 키 처리, 암호화 처리
         return ResponseEntity.ok(Collections.singletonMap("result", Objects.isNull(result)));
     }
 
-    // 로그아웃을,, rest로,,?
-
-    // 탈퇴
+    @GetMapping("/dupliId/{id}")
+    public ResponseEntity<Map<String,Object>> dupliId(){
+        return ResponseEntity.ok(Collections.singletonMap("result","1"));
+    }
 
 }

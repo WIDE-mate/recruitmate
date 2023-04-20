@@ -8,11 +8,11 @@ import java.io.Serializable;
 @Getter
 public class SessionUser implements Serializable {
 
-    private String id;
+    private int userId;
     private String grade;
 
     public SessionUser(LoginDTO dto) {
-        this.id = dto.getId();
-//        this.grade = dto.getGrade();
+        this.userId = dto.getUserId();
+        this.grade = dto.getGrade();
     }
 }
