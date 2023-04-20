@@ -13,7 +13,10 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class AspectConfig {
-    
+
+    /*
+        @Around("execution(* com.recruit.*mate..controller.*.*(..)) && @within(org.springframework.web.bind.annotation.RestController)")
+     */
     @Around("execution(* com.recruit.usermate..controller.*.*(..))")
     public Object aroundRecruitmateController(ProceedingJoinPoint joinPoint){
         Object[] args = joinPoint.getArgs();

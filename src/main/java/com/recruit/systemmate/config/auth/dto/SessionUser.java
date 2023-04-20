@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Getter
 public class SessionUser implements Serializable {
 
-    private int userId;
+    private Long userId;
     private String grade;
 
     public SessionUser(LoginDTO dto) {
