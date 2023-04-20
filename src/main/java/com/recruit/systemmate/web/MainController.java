@@ -9,12 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
 
     @GetMapping("/")
-    public String index(@Login SessionUser user){
+    public String index(){
         return "main";
     }
 
-    @GetMapping("/login")
-    public String login(){
-        return "login";
-    }
 }

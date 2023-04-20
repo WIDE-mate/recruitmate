@@ -1,23 +1,30 @@
 package com.recruit.usermate.service.user;
 
-import com.recruit.usermate.domain.user.User;
 import com.recruit.usermate.domain.user.UserRepository;
 import com.recruit.usermate.web.dto.LoginDTO;
-import com.recruit.usermate.web.dto.UserDTO;
+import com.recruit.usermate.web.dto.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @Transactional
     public LoginDTO login(LoginDTO dto){
-        return null;
-//        return userRepository.login(dto.getId(), dto.getPassword());
+        return userMapper.toLoginDTO(userRepository.findByIdAndPassword(dto.getId(), dto.getPassword()));
+    }
+
+    @Transactional
+    public boolean dupliId(String id){
+        return false;
+//        return userRepository.findById(id) != null;
     }
     
     // 비회원 로그인
