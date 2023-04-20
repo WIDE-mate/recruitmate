@@ -25,15 +25,32 @@ public class UserRespositoryTest {
     @Test
     public void 로그인(){
         //given
-        String id = "id";
-        String password = "password";
+        String id = "idd";
+        String password = "padssword";
 
-        userRepository.save(User.builder().id(id).password(password).grade("회원").build());
+        userRepository.save(User.builder().loginId(id).password(password).grade("회원").build());
 
         //when
-        LoginDTO dto = userMapper.toLoginDTO(userRepository.findByIdAndPassword("ids",password));
+        LoginDTO dto = userMapper.toLoginDTO(userRepository.findByloginIdAndPassword(id,password));
 
         //Then
         Assertions.assertThat(dto).withFailMessage("DTO is null!!").isNotNull();
+        Assertions.assertThat(dto.getPassword()).withFailMessage("DTO is null!!").isEqualTo(password);
+    }
+
+    @Test
+    public void 아이디_중복_확인(){
+        //given
+        String id = "id";
+        String password = "password";
+
+        userRepository.save(User.builder().loginId(id).password(password).grade("회원").build());
+
+        //when
+        boolean result = userRepository.existsByloginId("ids");
+
+        //Then
+        Assertions.assertThat(result).isFalse();
+
     }
 }
