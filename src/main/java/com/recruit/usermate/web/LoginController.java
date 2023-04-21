@@ -35,15 +35,15 @@ public class LoginController {
         return ResponseUtil.ok(key);
     }
 
-    @GetMapping("/logout")
-    public ResponseEntity<Map<String, Object>> logout(@RequestParam String loginKey){
+    @GetMapping("/logout/{loginKey}")
+    public ResponseEntity<Map<String, Object>> logout(@PathVariable String loginKey){
         boolean isLogin = httpSession != null && loginKey.equals(httpSession.getAttribute(keyName));
         if(isLogin) httpSession.invalidate();
         return ResponseUtil.trueToOne(isLogin);
     }
 
-    @GetMapping("/get-session")
-    public ResponseEntity<Map<String,Object>> getSession(@RequestParam String loginKey, @Login SessionUser user){
+    @GetMapping("/{loginKey}")
+    public ResponseEntity<Map<String,Object>> getSession(@PathVariable String loginKey, @Login SessionUser user){
         return ResponseUtil.ok(Optional.ofNullable(httpSession)
                 .map(session -> session.getAttribute(keyName))
                 .map(Object::toString)
