@@ -19,33 +19,42 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/api/auth")
 public class LoginController {
 
     private final UserService userService;
     private final HttpSession httpSession;
+    private final String keyName = "loginKey";
 
-    @PostMapping("/api/auth/login")
+    @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody LoginDTO dto){
         if (Objects.isNull(userService.login(dto))) return ResponseUtil.ok(null);
-        String key = BCrypt.hashpw(UUID.randomUUID().toString().replaceAll("-", "").substring(0, 16),BCrypt.gensalt());
-        httpSession.setAttribute("loginKey", key);
+        String key = BCrypt.hashpw(UUID.randomUUID().toString().replaceAll("[/-]", "").substring(0, 16),BCrypt.gensalt());
+        httpSession.setAttribute(keyName, key);
         httpSession.setAttribute("user", new SessionUser(dto));
         return ResponseUtil.ok(key);
     }
 
-    @PostMapping("/api/auth/get-session")
-    public ResponseEntity<Map<String,Object>> getSession(@RequestParam(required = true) String loginKey, @Login SessionUser user){
+    @GetMapping("/logout")
+    public ResponseEntity<Map<String, Object>> logout(@RequestParam String loginKey){
+        boolean isLogin = httpSession != null && loginKey.equals(httpSession.getAttribute(keyName));
+        if(isLogin) httpSession.invalidate();
+        return ResponseUtil.trueToOne(isLogin);
+    }
+
+    @GetMapping("/get-session")
+    public ResponseEntity<Map<String,Object>> getSession(@RequestParam String loginKey, @Login SessionUser user){
         return ResponseUtil.ok(Optional.ofNullable(httpSession)
-                .map(session -> session.getAttribute("loginKey"))
+                .map(session -> session.getAttribute(keyName))
                 .map(Object::toString)
                 .filter(loginKey::equals)
                 .map(session -> user)
                 .orElse(null));
     }
 
-    @PostMapping("/api/user/check-duplicate-id")
+    @PostMapping("/check-duplicate-id")
     public ResponseEntity<Map<String,Object>> dupliId(@RequestBody LoginDTO dto){
-        return ResponseUtil.ok(userService.dupliId(dto.getLoginId()) ? "0" : "1");
+        return ResponseUtil.trueToOne(!userService.dupliId(dto.getLoginId()));
     }
 
 }

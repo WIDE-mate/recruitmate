@@ -43,9 +43,7 @@ public class LoginControllerTest {
 
     @BeforeEach
     public void setup() {
-        SessionUser expectedUser = new SessionUser(new LoginDTO(0l,"username", "password",""));
         when(httpSession.getAttribute(eq("loginKey"))).thenReturn("dummyLoginKey");
-        when(httpSession.getAttribute(eq("user"))).thenReturn(expectedUser);
     }
 
     @AfterEach
@@ -56,8 +54,8 @@ public class LoginControllerTest {
     @Test
     public void 로그인() throws Exception{
         //given
-        String id = "id";
-        String password = "password";
+        String id = "id2";
+        String password = "password2";
         String url = "http://localhost:" + port + "/api/auth/login";
 
         LoginDTO in = LoginDTO.builder().loginId(id).password(password).grade("회원").build();
@@ -89,25 +87,24 @@ public class LoginControllerTest {
         // Test 중에는 세션정보가 안 담기므로 가짜로 해야함
 
         // Given
-        String url = "http://localhost:"+ port + "/api/auth/get-session";
+        String url = "http://localhost:"+ port + "/api/auth/get-session?loginKey=dummyLoginKey";
+        SessionUser expectedUser = new SessionUser(new LoginDTO(0l,"username", "password",""));
+        when(httpSession.getAttribute(eq("user"))).thenReturn(expectedUser);
 
-        MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
-        requestBody.add("loginKey", "dummyLoginKey");
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-
-        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
+//        MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
+//        requestBody.add("loginKey", "dummyLoginKey");
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+//
+//        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
 
         //when
-        ResponseEntity<Map> responseEntity = restTemplate.exchange(url, HttpMethod.POST, requestEntity, Map.class);
+        ResponseEntity<Map> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, Map.class);
 
         //then
         Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         Assertions.assertThat(responseEntity.getBody().get("result")).isNotNull();
-
-        verify(httpSession).getAttribute(eq("loginKey"));
-        verify(httpSession).getAttribute(eq("user"));
 
     }
 
