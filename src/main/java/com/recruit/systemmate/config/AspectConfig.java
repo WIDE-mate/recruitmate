@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 public class AspectConfig {
 
     /*
+        RestController만 하도록 했는데 어떤가요
         @Around("execution(* com.recruit.*mate..controller.*.*(..)) && @within(org.springframework.web.bind.annotation.RestController)")
      */
     @Around("execution(* com.recruit.usermate..controller.*.*(..))")

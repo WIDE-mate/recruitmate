@@ -11,4 +11,8 @@ public class ResponseUtil {
         return ResponseEntity.ok(Collections.singletonMap("result",result));
     }
 
+    public static ResponseEntity<Map<String, Object>> trueToOne (boolean result){
+        return ResponseEntity.ok(Collections.singletonMap("result",result ? "1" : "0"));
+    }
+
 }
