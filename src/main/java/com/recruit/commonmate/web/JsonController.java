@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @RestController
@@ -23,14 +24,16 @@ public class JsonController {
 
     @GetMapping("/path")
     private ResponseEntity<Map<String, Object>> path(){
-        Map<RequestMappingInfo, HandlerMethod> mappings = handlerMapping.getHandlerMethods();
-        Map<String, String > jsonMappings = new HashMap<>();
-//        for(RequestMappingInfo info : mappings.keySet()){
-//            if(Objects.isNull(info.getDirectPaths().iterator())) continue;;
-//            jsonMappings.put(info.getDirectPaths().iterator().next(),
-//                    mappings.get(info).getMethod().getName());
+        return null;
+//        Map<RequestMappingInfo, HandlerMethod> mappings = handlerMapping.getHandlerMethods();
+//        Map<String, String > jsonMappings = new HashMap<>();
+//        for (RequestMappingInfo mapping : mappings.keySet()) {
+//            if (mappings.get(mapping).getBeanType().equals(MainController.class))
+//                jsonMappings.put(mapping.getPatternsCondition().getPatterns().iterator().next()
+//                    , mappings.get(mapping).getMethod().getName());
+//
 //        }
-        return ResponseUtil.ok(jsonMappings);
+//        return ResponseUtil.ok(Objects.isNull(jsonMappings));
     }
 
 }
