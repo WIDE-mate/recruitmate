@@ -1,6 +1,5 @@
 package com.recruit.usermate.service.user;
 
-import com.recruit.systemmate.util.BcryptEncoder;
 import com.recruit.usermate.domain.user.UserRepository;
 import com.recruit.usermate.web.dto.LoginDTO;
 import com.recruit.usermate.web.dto.UserDTO;
@@ -30,5 +29,16 @@ public class UserService {
     public void save(UserDTO dto){
         userRepository.save(userMapper.toUserDTO(dto));
     }
-    
+
+    @Transactional
+    public void delete(String id){
+        // 예외처리
+        userRepository.deleteById(id);
+    }
+
+//    @Transactional
+//    public void update(UserDTO dto){
+//        userRepository.
+//    }
+
 }

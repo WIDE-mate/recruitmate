@@ -4,15 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class RedirectController {
+public class UserRedirectController {
 
     @GetMapping("/login")
-    public String login(){
+    public String loginPage(){
         return "login";
     }
 
     @GetMapping("/sign")
-    public String sign(){
+    public String signPage(){
         return "sign";
     }
 
