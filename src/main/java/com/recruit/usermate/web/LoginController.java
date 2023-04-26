@@ -5,6 +5,7 @@ import com.recruit.systemmate.config.auth.dto.SessionUser;
 import com.recruit.systemmate.util.ResponseUtil;
 import com.recruit.usermate.service.user.UserService;
 import com.recruit.usermate.web.dto.LoginDTO;
+import com.recruit.usermate.web.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,20 @@ public class LoginController {
         boolean isLogin = httpSession != null && loginKey.equals(httpSession.getAttribute(keyName));
         if(isLogin) httpSession.invalidate();
         return ResponseUtil.trueToOne(isLogin);
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<Map<String,Object>> signup (UserDTO dto){
+        // 예외처리 필요
+        userService.save(dto);
+        return ResponseUtil.ok(null);
+    }
+
+    @DeleteMapping("/withdraw/{loginKey}")
+    public ResponseEntity<Map<String,Object>> withdraw(@PathVariable String loginKey, @Login SessionUser user){
+        // 예외처리 필요
+        if(httpSession == null || loginKey.equals(httpSession.getAttribute("loginKey"))) return ResponseUtil.ok(null);
+        return ResponseUtil.ok(null);
     }
 
     @GetMapping("/{loginKey}")
