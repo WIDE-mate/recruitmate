@@ -15,6 +15,7 @@ public class User {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long userId;
+
     private String loginId;
     private String password;
     private String name;
@@ -25,12 +26,16 @@ public class User {
     private String addr;
     private String addrDetail;
     private String zip;
+    @Column(length = 1, nullable = false)
+//    @Enumerated(EnumType.STRING)
+    private String gender;
     @Column(length = 10, nullable = false)
 //    @Enumerated(EnumType.STRING)
     private String grade;
 
     @Builder
-    public User(Long userId, String loginId, String password, String name, Date birth, String tel, String grade, String email, String addr, String addrDetail, String zip) {
+    public User(Long userId, String loginId, String password, String name, Date birth, String tel, String grade,
+                String email, String addr, String addrDetail, String zip, String gender) {
         this.userId = userId;
         this.loginId = loginId;
         this.password = password;
@@ -42,5 +47,6 @@ public class User {
         this.addr = addr;
         this.addrDetail = addrDetail;
         this.zip = zip;
+        this.gender = gender;
     }
 }

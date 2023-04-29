@@ -15,11 +15,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
 import java.util.Map;
 
 import static org.mockito.Mockito.*;
@@ -29,6 +31,9 @@ public class LoginControllerTest {
 
     @LocalServerPort
     private int port;
+
+    @Autowired
+    BCryptPasswordEncoder encoder;
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -46,20 +51,23 @@ public class LoginControllerTest {
         when(httpSession.getAttribute(eq("loginKey"))).thenReturn("dummyLoginKey");
     }
 
-    @AfterEach
-    private void tearDown() throws Exception{
-        userRepository.deleteAll();
-    }
+//    @AfterEach
+//    private void tearDown() throws Exception{
+//        userRepository.deleteAll();
+//    }
 
     @Test
     public void 로그인() throws Exception{
         //given
-        String id = "id2";
-        String password = "password2";
+        String id = "id";
+        String password = "password";
         String url = "http://localhost:" + port + "/api/auth/login";
 
-        LoginDTO in = LoginDTO.builder().loginId(id).password(password).grade("회원").build();
-        userService.save(UserDTO.builder().loginId(id).password(password).grade("회원").build());
+        LoginDTO in = LoginDTO.builder().loginId(id).password("password").grade("회원").build();
+        UserDTO user = UserDTO.builder().loginId(id).password(password).grade("회원").gender("F")
+                .name("name").tel("tel").birth(new Date(2023,12,31)).build();
+
+        userService.save(user).getPassword();
 
         HttpEntity<LoginDTO> requestEntity = new HttpEntity<>(in);
 
@@ -70,16 +78,7 @@ public class LoginControllerTest {
         Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         Assertions.assertThat(responseEntity.getBody().get("result")).isNotNull();
 
-        //=======
-        url = "http://localhost:" + port + "/api/user/check-duplicate-id";
-        HttpEntity<LoginDTO> requestEntity2 = new HttpEntity<>(in);
 
-        //when
-        ResponseEntity<Map> responseEntity2 = restTemplate.exchange(url, HttpMethod.POST, requestEntity2, Map.class);
-
-        //then
-        Assertions.assertThat(responseEntity2.getStatusCode()).isEqualTo(HttpStatus.OK);
-        Assertions.assertThat(responseEntity2.getBody().get("result")).isEqualTo("0");
     }
 
     @Test

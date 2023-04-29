@@ -1,4 +1,4 @@
-package com.recruit.commonmate.web;
+package com.recruit.systemmate.web;
 
 import com.recruit.systemmate.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,6 @@ import java.util.*;
 @RequestMapping("/api/json")
 public class JsonController {
 
-    private final RequestMappingHandlerMapping handlerMapping;
     private final ApplicationContext context;
 
     @GetMapping("/path")
@@ -32,7 +31,7 @@ public class JsonController {
             RequestMapping requestMapping = AnnotationUtils.findAnnotation(classes, RequestMapping.class);
             for (Method method : classes.getMethods()){
                 GetMapping getMapping = AnnotationUtils.findAnnotation(method, GetMapping.class);
-                if (getMapping != null) paths.put(method.getName(), requestMapping == null ? "" : requestMapping.value()[0] + getMapping.value()[0]);
+                if (getMapping != null) paths.put(method.getName(), (requestMapping == null ? "" : requestMapping.value()[0]) + getMapping.value()[0]);
             }
         }
         return ResponseUtil.ok(paths);
