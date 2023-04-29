@@ -1,6 +1,5 @@
 package com.recruit.usermate.web.dto;
 
-import com.recruit.systemmate.util.BcryptEncoder;
 import com.recruit.usermate.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,7 +23,7 @@ public class LoginDTO {
     }
 
     public User toEntity(){
-        return User.builder().userId(userId).loginId(loginId).password(BcryptEncoder.encode(password))
+        return User.builder().userId(userId).loginId(loginId).password(password)
                 .grade(grade).build();
     }
 }

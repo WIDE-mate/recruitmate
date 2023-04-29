@@ -5,10 +5,14 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+
+    // entity -> dto
 
     @Mapping(source = "userId", target = "userId")
     @Mapping(source = "loginId",target = "loginId")
@@ -27,6 +31,7 @@ public interface UserMapper {
     @Mapping(source = "addrDetail", target = "addrDetail")
     @Mapping(source = "zip", target = "zip")
     @Mapping(source = "grade", target = "grade")
-    User toUserDTO(UserDTO dto);
+    @Mapping(source = "gender", target = "gender")
+    UserDTO toUserDTO(User user);
 
 }

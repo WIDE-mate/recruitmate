@@ -31,7 +31,7 @@ public class UserRespositoryTest {
         userRepository.save(User.builder().loginId(id).password(password).grade("회원").build());
 
         //when
-        LoginDTO dto = userMapper.toLoginDTO(userRepository.findByloginIdAndPassword(id,password));
+        LoginDTO dto = userMapper.toLoginDTO(userRepository.findByloginId(id).get(0));
 
         //Then
         Assertions.assertThat(dto).withFailMessage("DTO is null!!").isNotNull();
