@@ -1,5 +1,7 @@
 package com.recruit.usermate.web.dto;
 
+import com.recruit.systemmate.enums.Gender;
+import com.recruit.systemmate.enums.Grade;
 import com.recruit.usermate.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,12 +23,12 @@ public class UserDTO {
     private String addr;
     private String addrDetail;
     private String zip;
-    private String gender;
-    private String grade;
+    private Gender gender;
+    private Grade grade;
 
     @Builder
     public UserDTO(Long userId, String loginId, String password, String name, Date birth, String tel,
-                   String email, String addr, String addrDetail, String zip, String gender, String grade) {
+                    String email, String addr, String addrDetail, String zip, Gender gender, Grade grade) {
         this.userId = userId;
         this.loginId = loginId;
         this.password = password;
@@ -43,7 +45,7 @@ public class UserDTO {
 
 
     public User toEntity(){
-        return User.builder().loginId(loginId).password(password)
+        return User.builder().userId(userId).loginId(loginId).password(password)
                 .name(name).birth(birth).tel(tel).email(email).addr(addr).addrDetail(addrDetail).zip(zip)
                 .gender(gender).grade(grade).build();
     }

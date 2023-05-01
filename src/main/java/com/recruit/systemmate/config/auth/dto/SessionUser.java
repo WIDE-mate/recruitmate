@@ -1,5 +1,6 @@
 package com.recruit.systemmate.config.auth.dto;
 
+import com.recruit.systemmate.enums.Grade;
 import com.recruit.usermate.web.dto.LoginDTO;
 import lombok.Getter;
 
@@ -9,7 +10,7 @@ import java.io.Serializable;
 public class SessionUser implements Serializable {
 
     private Long userId;
-    private String grade;
+    private Grade grade;
 
     public SessionUser(LoginDTO dto) {
         this.userId = dto.getUserId();
