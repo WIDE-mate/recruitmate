@@ -11,6 +11,8 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 import javax.servlet.http.HttpSession;
 
+import static com.recruit.systemmate.util.GlobalVariables.USER;
+
 @RequiredArgsConstructor
 @Component
 public class LoginArgumentResolver implements HandlerMethodArgumentResolver {
@@ -26,6 +28,6 @@ public class LoginArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        return httpSession.getAttribute("user");
+        return httpSession.getAttribute(USER);
     }
 }
