@@ -10,5 +10,6 @@ public class RecruitmateApplication {
 
 		System.out.println("http://localhost:8080");
 		System.out.println("http://localhost:8080/main");
+		System.out.println("http://localhost:8080/swagger-ui.html");
 	}
 }

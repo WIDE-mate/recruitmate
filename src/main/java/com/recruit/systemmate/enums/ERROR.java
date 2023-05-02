@@ -4,18 +4,16 @@ import lombok.Getter;
 
 @Getter
 public enum ERROR {
-    ERROR("에러"),
-    NOT_FOUND("NOT_FOUND"),
-    UNKNOWN("알수없음"),
 
-    DUPLICATE_ID("아이디_중복"),
-    DB_ERR("DB_에러"),
-    ERR_SESSION("세션_에러"),
-    
-    NOT_EMPTY("필수값_누락"),
-    MAX_VALUE("저장값_초과"),
-    PATTERN("형식_에러"),
-    EMAIL("이메일_형식_에러");
+    INVALID_REQUEST("400 Bad Request"),
+    UN_AUTH("401 Unauthorized"),
+    NOT_FOUND("404 Not Found"),
+    CONFLICT("409 Conflict"),
+    UN_ENTITY("422 UnProcessable Entity"),
+
+    INTERNAL_SERVER_ERROR("500 Internal Server Error"),
+
+    UNKNOWN_ERROR("Unknown Error");
 
     private String title;
 
