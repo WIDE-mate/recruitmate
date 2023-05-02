@@ -8,10 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -33,7 +30,7 @@ public class SignupDTO {
     @Size(max = 255,message = "이름 저장길이를 초과합니다.")
     private String name;
 
-    @NotEmpty(message = "생년월일은 필수 입력입니다.")
+    @NotNull(message = "생년월일은 필수 입력입니다.")
     private LocalDate birth;
 
     @NotEmpty(message = "전화번호는 필수 입력입니다.")
@@ -49,15 +46,16 @@ public class SignupDTO {
     private String addrDetail;
     private String zip;
 
-    @NotEmpty(message = "성별은 필수 입력입니다.")
+    @NotNull(message = "성별은 필수 입력입니다.")
     private Gender gender;
 
     private Grade grade;
-    private boolean duplicate;
+
+    private String loginKey;
 
     @Builder
-    public SignupDTO(Long userId, String loginId, String password, String name, LocalDate birth, String tel,
-                    String email, String addr, String addrDetail, String zip, Gender gender, Grade grade, boolean duplicate) {
+    public SignupDTO(Long userId, String loginId, String password, String name, LocalDate birth, String tel, String loginKey,
+                    String email, String addr, String addrDetail, String zip, Gender gender, Grade grade) {
         this.userId = userId;
         this.loginId = loginId;
         this.password = password;
@@ -70,11 +68,7 @@ public class SignupDTO {
         this.zip = zip;
         this.gender = gender;
         this.grade = grade;
-        this.duplicate = duplicate;
-    }
-
-    public void trueDuplicate(){
-        this.duplicate = true;
+        this.loginKey = loginKey;
     }
 
     public User toEntity(){

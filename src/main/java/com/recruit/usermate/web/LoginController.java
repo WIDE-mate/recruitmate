@@ -30,17 +30,17 @@ public class LoginController {
      * 로그인 처리
      * @param dto 로그인 정보를 담은 {@link LoginDTO} 객체
      * @return 로그인 결과를 담은 {@link ResponseEntity} 객체. 인증에 성공하면 로그인 세션 키를 포함하고, 실패하면 null을 포함합니다.
-     * @apiNote 로그인 정보가 올바르면 세션을 생성하고, 생성한 세션의 키를 반환합니다. 로그인 정보가 올바르지 않으면 세션을 생성하지 않으며, null을 반환합니다.
+     * @apiNote 로그인 정보가 올바르면 세션을 생성하고, 생성한 세션의 키를 반환합니다. 로그인 정보가 올바르지 않으면 세션을 생성하지 않으며, null을 반환합니다. 
+     *          이미 로그인하였으면 강제 로그아웃 처리한다
      */
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody LoginDTO dto){
         LoginDTO user = userService.login(dto);
-        String key = null;
-        if (user != null) {
-            key = madeRandomString();
-            httpSession.setAttribute(LOGINKEY, key);
-            httpSession.setAttribute(USER, new SessionUser(user));
-        }
+        if (user == null) return ResponseUtil.ok(null);
+        String key = madeRandomString();
+        httpSession.invalidate();
+        httpSession.setAttribute(LOGINKEY, key);
+        httpSession.setAttribute(USER, new SessionUser(user));
         return ResponseUtil.ok(key);
     }
 

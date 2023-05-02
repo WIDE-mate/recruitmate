@@ -14,8 +14,23 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
         show_sql: true
         format_sql: true
+
 resources:
     static-locations: /resources/
+
+springdoc:
+  default-consumes-media-type : application/json
+  default-produces-media-type : application/json
+  model-and-view-allowed: true
+  api-docs:
+    groups:
+      enabled: true
+  swagger-ui:
+    disable-swagger-default-url : true
+    doc-expansion: none
+    tags-sorter: alpha
+    operations-sorter: alpha
+    path : /swagger-ui.html
 
 ---
 spring:

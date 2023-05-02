@@ -7,14 +7,15 @@ import com.recruit.systemmate.handler.exception.HttpSessionRequiredException;
 import com.recruit.systemmate.handler.exception.HttpSessionUserNotFoundException;
 import com.recruit.systemmate.handler.exception.UserNotFoundException;
 import com.recruit.systemmate.util.ResponseUtil;
+import com.recruit.systemmate.util.response.Response;
 import com.recruit.usermate.service.user.UserService;
 import com.recruit.usermate.web.dto.SignupDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.Map;
 
 import static com.recruit.systemmate.util.GlobalVariables.LOGINKEY;
@@ -31,15 +32,12 @@ public class UserController {
      * 회원 가입
      * @param dto SignupDTO - 가입 정보를 담은 객체
      * @return ResponseEntity<Map<String,Object>> - 처리 결과를 담은 ResponseEntity 객체
-     * @throws DuplicateIDException 중복된 ID가 입력될 경우 발생하는 예외
+     * @apiNote 성공시에 loginId를 반환한다.
      */
-    @PostMapping("/signup")
-    public ResponseEntity<Map<String,Object>> signup (@RequestBody SignupDTO dto){
-        SignupDTO result  = userService.save(dto);
-        if(result.isDuplicate())
-            throw new DuplicateIDException();
-        return ResponseUtil.ok(result.getLoginId());
-    }
+//    @PostMapping("/signup")
+//    public <T extends Response<?>> ResponseEntity<T> signup (@RequestBody @Valid SignupDTO dto){
+//        return ResponseUtil.ok(userService.save(dto).getLoginId(), .class);
+//    }
 
     /**
      * 회원 탈퇴
@@ -48,31 +46,28 @@ public class UserController {
      * @return ResponseEntity<Map<String,Object>> - 처리 결과를 담은 ResponseEntity 객체
      * @throws HttpSessionRequiredException 로그인 세션이 필요한 경우 발생하는 예외
      * @throws HttpSessionUserNotFoundException 로그인한 사용자 정보가 없는 경우 발생하는 예외
+     * @apiNote 성공시에 1을 반환한다.
      */
     @DeleteMapping("/withdraw/{loginKey}")
     public ResponseEntity<Map<String,Object>> withdraw(@PathVariable String loginKey, @Login SessionUser user){
         httpSessionException(loginKey, user);
         userService.delete(user.getUserId());
-        return ResponseUtil.ok("Yse");
+        return ResponseUtil.trueToOne(true);
     }
 
     /**
      * 회원 정보 수정
-     * @param dto SignupDTO - 수정할 정보를 담은 객체
-     * @param loginKey String - 로그인 키 값
+     * @param dto SignupDTO - 수정할 정보를 담은 객체 (loginKey를 가지고있다)
      * @param user SessionUser - 현재 로그인한 사용자 정보를 담은 객체
      * @return ResponseEntity<Map<String,Object>> - 처리 결과를 담은 ResponseEntity 객체
-     * @throws UserNotFoundException 수정할 사용자 정보가 없는 경우 발생하는 예외
      * @throws HttpSessionRequiredException 로그인 세션이 필요한 경우 발생하는 예외
      * @throws HttpSessionUserNotFoundException 로그인한 사용자 정보가 없는 경우 발생하는 예외
+     * @apiNote 성공시에 수정된 유저정보를 반환한다.
      */
     @PutMapping("/user-modify")
-    public ResponseEntity<Map<String,Object>> userModify(@RequestBody SignupDTO dto, @RequestParam String loginKey, @Login SessionUser user){
-        httpSessionException(loginKey, user);
-        SignupDTO result  = userService.update(buildWithUserId(user.getUserId(), dto));
-        if(result.isDuplicate())
-            throw new UserNotFoundException();
-        return ResponseUtil.ok(result);
+    public ResponseEntity<Map<String,Object>> userModify(@RequestBody @Valid SignupDTO dto, @Login SessionUser user){
+        httpSessionException(dto.getLoginKey(), user);
+        return ResponseUtil.ok(userService.update(buildWithUserId(user.getUserId(), dto)));
     }
     
     /**
@@ -86,7 +81,7 @@ public class UserController {
     @GetMapping("/{loginKey}")
     public ResponseEntity<Map<String,Object>> findByMe(@PathVariable String loginKey, @Login SessionUser user){
         httpSessionException(loginKey, user);
-        return  ResponseUtil.ok(userService.findById(user.getUserId()));
+        return ResponseUtil.ok(userService.findById(user.getUserId()));
     }
 
     /**

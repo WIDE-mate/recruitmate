@@ -1,5 +1,6 @@
 package com.recruit.usermate.service.user;
 
+import com.recruit.systemmate.handler.exception.DuplicateIDException;
 import com.recruit.systemmate.handler.exception.UserNotFoundException;
 import com.recruit.usermate.domain.user.User;
 import com.recruit.usermate.domain.user.UserRepository;
@@ -35,25 +36,25 @@ public class UserService {
 
     @Transactional
     public SignupDTO save(SignupDTO dto){
-        if(dupliId(dto.getLoginId())) {
-            dto.trueDuplicate();
-            return dto;
-        }
+        if (userRepository.existsByloginId(dto.getLoginId()))
+            throw new DuplicateIDException();
         return userMapper.toSignupDTO(userRepository.save(dto.toEntity(encoder.encode(dto.getPassword()))));
     }
 
     @Transactional
     public void delete(Long id){
+        if (!userRepository.existsById(id))
+            throw new UserNotFoundException();
         userRepository.deleteById(id);
     }
 
     @Transactional
     public SignupDTO update(SignupDTO dto){
-        Optional<User> user = userRepository.findById(dto.getUserId());
-        if (user.isEmpty())
+        User user = userRepository.findByloginId(dto.getLoginId());
+        if (user == null)
             throw new UserNotFoundException();
         return userMapper.toSignupDTO(userRepository.save(
-                dto.toEntity(user.get().getUserId(),user.get().getLoginId(),user.get().getPassword(),user.get().getGrade())));
+                dto.toEntity(user.getUserId(),user.getLoginId(),user.getPassword(),user.getGrade())));
     }
 
     @Transactional
