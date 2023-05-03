@@ -2,10 +2,8 @@ package com.recruit.usermate.web;
 
 import com.recruit.systemmate.config.auth.Login;
 import com.recruit.systemmate.config.auth.dto.SessionUser;
-import com.recruit.systemmate.handler.exception.DuplicateIDException;
 import com.recruit.systemmate.handler.exception.HttpSessionRequiredException;
 import com.recruit.systemmate.handler.exception.HttpSessionUserNotFoundException;
-import com.recruit.systemmate.handler.exception.UserNotFoundException;
 import com.recruit.systemmate.util.ResponseUtil;
 import com.recruit.systemmate.util.response.Response;
 import com.recruit.usermate.service.user.UserService;
@@ -35,8 +33,8 @@ public class UserController {
      * @apiNote 성공시에 loginId를 반환한다.
      */
 //    @PostMapping("/signup")
-//    public <T extends Response<?>> ResponseEntity<T> signup (@RequestBody @Valid SignupDTO dto){
-//        return ResponseUtil.ok(userService.save(dto).getLoginId(), .class);
+//    public ResponseEntity<? extends Response<String>> signup (@RequestBody @Valid SignupDTO dto){
+//        return ResponseUtil.ok(userService.save(dto).getLoginId());
 //    }
 
     /**
