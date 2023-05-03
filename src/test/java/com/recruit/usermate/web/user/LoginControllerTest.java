@@ -1,14 +1,10 @@
 package com.recruit.usermate.web.user;
 
-import com.recruit.systemmate.config.auth.dto.SessionUser;
-import com.recruit.systemmate.enums.Gender;
-import com.recruit.systemmate.enums.Grade;
+import com.recruit.configmate.auth.dto.SessionUser;
 import com.recruit.usermate.domain.user.UserRepository;
 import com.recruit.usermate.service.user.UserService;
 import com.recruit.usermate.web.dto.LoginDTO;
-import com.recruit.usermate.web.dto.UserDTO;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -18,12 +14,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.sql.Date;
 import java.util.Map;
 
 import static org.mockito.Mockito.*;
