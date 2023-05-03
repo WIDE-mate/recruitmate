@@ -1,7 +1,6 @@
 package com.recruit.usermate.domain.user;
 
-import com.recruit.systemmate.enums.Grade;
-import com.recruit.usermate.web.dto.LoginDTO;
+import com.recruit.commonmate.enums.Grade;
 import com.recruit.usermate.web.dto.UserMapper;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;

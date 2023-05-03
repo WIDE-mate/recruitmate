@@ -1,14 +1,17 @@
 package com.recruit.usermate.web.dto;
 
-import com.recruit.systemmate.enums.Gender;
-import com.recruit.systemmate.enums.Grade;
+import com.recruit.commonmate.enums.Gender;
+import com.recruit.commonmate.enums.Grade;
 import com.recruit.usermate.domain.user.User;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 
+@ApiResponse
 @Getter
 @NoArgsConstructor
 public class UserDTO {

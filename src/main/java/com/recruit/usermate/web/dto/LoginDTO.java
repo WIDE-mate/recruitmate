@@ -1,6 +1,6 @@
 package com.recruit.usermate.web.dto;
 
-import com.recruit.systemmate.enums.Grade;
+import com.recruit.commonmate.enums.Grade;
 import com.recruit.usermate.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;

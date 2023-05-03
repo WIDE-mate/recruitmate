@@ -1,13 +1,12 @@
 package com.recruit.usermate.web.dto;
 
-import com.recruit.systemmate.enums.Gender;
-import com.recruit.systemmate.enums.Grade;
+import com.recruit.commonmate.enums.Gender;
+import com.recruit.commonmate.enums.Grade;
 import com.recruit.usermate.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.sql.Date;
 import java.time.LocalDate;
