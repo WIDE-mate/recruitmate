@@ -1,6 +1,6 @@
 package com.recruit.usermate.web;
 
-import com.recruit.commonmate.GeneralException;
+import com.recruit.commonmate.GlobalException;
 import com.recruit.commonmate.enums.Code;
 import com.recruit.commonmate.dto.ResponseData;
 import com.recruit.configmate.auth.Login;
@@ -52,7 +52,7 @@ public class LoginController {
     @GetMapping("/logout/{loginKey}")
     public ResponseData<Object> logout(@PathVariable String loginKey){
         if (httpSession == null || !loginKey.equals(httpSession.getAttribute(LOGINKEY)))
-            throw new GeneralException(Code.NOT_SESSION);
+            throw new GlobalException(Code.NOT_SESSION);
         httpSession.invalidate();
         return ResponseData.of("1");
     }
@@ -60,17 +60,17 @@ public class LoginController {
     /**
      * 세션 정보 반환
      * @param loginKey 로그인 세션 키
-     * @param user 세션에서 찾을 사용자 객체. 이 값을 주입받지 못하면 {@link GeneralException} 예외를 던집니다.
+     * @param user 세션에서 찾을 사용자 객체. 이 값을 주입받지 못하면 {@link GlobalException} 예외를 던집니다.
      * @return 로그인한 사용자의 세션 정보를 담은 {@link ResponseEntity} 객체
-     * @throws GeneralException 로그인 세션이 없는 경우, 사용자 정보를 찾을 수 없는 경우
+     * @throws GlobalException 로그인 세션이 없는 경우, 사용자 정보를 찾을 수 없는 경우
      * @apiNote 로그인 세션이 존재하고, 로그인한 사용자 정보를 찾으면 해당 사용자의 세션 정보를 반환합니다.
      */
     @GetMapping("/{loginKey}")
     public ResponseData<Object> getSession(@PathVariable String loginKey, @Login SessionUser user){
         if (httpSession == null || !loginKey.equals(httpSession.getAttribute(LOGINKEY)))
-            throw new GeneralException(Code.NOT_SESSION);
+            throw new GlobalException(Code.NOT_SESSION);
         if (user == null)
-            throw new GeneralException(Code.NOT_IN_USER);
+            throw new GlobalException(Code.NOT_IN_USER);
         return ResponseData.of(user);
     }
 

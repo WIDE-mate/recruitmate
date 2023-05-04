@@ -9,28 +9,41 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
+@Schema(description = "회원 정보 DTO")
 @ApiResponse
 @Getter
 @NoArgsConstructor
 public class UserDTO {
 
+    @Schema(title = "유저번호")
     private Long userId;
+    @Schema(title = "아이디")
     private String loginId;
+    @Schema(title = "패스워드")
     private String password;
+    @Schema(title = "이름")
     private String name;
-    private Date birth;
+    @Schema(title = "생년월일")
+    private LocalDate birth;
+    @Schema(title = "전화번호")
     private String tel;
+    @Schema(title = "이메일")
     private String email;
+    @Schema(title = "주소")
     private String addr;
+    @Schema(title = "상세주소")
     private String addrDetail;
+    @Schema(title = "우편번호")
     private String zip;
+    @Schema(title = "성별")
     private Gender gender;
+    @Schema(title = "등급")
     private Grade grade;
 
     @Builder
-    public UserDTO(Long userId, String loginId, String password, String name, Date birth, String tel,
+    public UserDTO(Long userId, String loginId, String password, String name, LocalDate birth, String tel,
                     String email, String addr, String addrDetail, String zip, Gender gender, Grade grade) {
         this.userId = userId;
         this.loginId = loginId;

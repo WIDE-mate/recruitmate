@@ -22,10 +22,10 @@ springdoc:
   default-consumes-media-type : application/json
   default-produces-media-type : application/json
   model-and-view-allowed: true
+  openapi: true # 엔드포인트 비활성화
   api-docs:
     groups:
       enabled: true
-#    resolve-schema-properties: true
   swagger-ui:
     disable-swagger-default-url : true
     doc-expansion: none

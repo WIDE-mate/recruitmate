@@ -1,6 +1,6 @@
 package com.recruit.usermate.web;
 
-import com.recruit.commonmate.GeneralException;
+import com.recruit.commonmate.GlobalException;
 import com.recruit.commonmate.enums.Code;
 import com.recruit.commonmate.dto.ResponseData;
 import com.recruit.configmate.auth.Login;
@@ -39,7 +39,7 @@ public class UserController {
      * @param loginKey String - 로그인 키 값
      * @param user SessionUser - 현재 로그인한 사용자 정보를 담은 객체
      * @return DataResponse<Object> - 처리 결과를 담은 ResponseEntity 객체
-     * @throws GeneralException 로그인 세션이 필요한 경우 발생하는 예외, 로그인한 사용자 정보가 없는 경우 발생하는 예외
+     * @throws GlobalException 로그인 세션이 필요한 경우 발생하는 예외, 로그인한 사용자 정보가 없는 경우 발생하는 예외
      * @apiNote 성공시에 1을 반환한다.
      */
     @DeleteMapping("/withdraw/{loginKey}")
@@ -54,13 +54,13 @@ public class UserController {
      * @param dto SignupDTO - 수정할 정보를 담은 객체 (loginKey를 가지고있다)
      * @param user SessionUser - 현재 로그인한 사용자 정보를 담은 객체
      * @return DataResponse<Object> - 처리 결과를 담은 ResponseEntity 객체
-     * @throws GeneralException 로그인 세션이 필요한 경우 발생하는 예외, 로그인한 사용자 정보가 없는 경우 발생하는 예외
+     * @throws GlobalException 로그인 세션이 필요한 경우 발생하는 예외, 로그인한 사용자 정보가 없는 경우 발생하는 예외
      * @apiNote 성공시에 수정된 유저정보를 반환한다.
      */
     @PutMapping("/user-modify")
     public ResponseData<Object> userModify(@RequestBody @Valid SignupDTO dto, @Login SessionUser user){
         httpSessionException(dto.getLoginKey(), user);
-        return ResponseData.of(userService.update(buildWithUserId(user.getUserId(), dto)));
+        return ResponseData.of(userService.update(dto.withUserId(user.getUserId())));
     }
     
     /**
@@ -68,7 +68,7 @@ public class UserController {
      * @param loginKey String - 로그인 키 값
      * @param user SessionUser - 현재 로그인한 사용자 정보를 담은 객체
      * @return DataResponse<Object> - 처리 결과를 담은 ResponseEntity 객체
-     * @throws GeneralException 로그인 세션이 필요한 경우 발생하는 예외, 로그인한 사용자 정보가 없는 경우 발생하는 예외
+     * @throws GlobalException 로그인 세션이 필요한 경우 발생하는 예외, 로그인한 사용자 정보가 없는 경우 발생하는 예외
      */
     @GetMapping("/{loginKey}")
     public ResponseData<Object> findByMe(@PathVariable String loginKey, @Login SessionUser user){
@@ -97,26 +97,9 @@ public class UserController {
 
     private void httpSessionException(String loginKey, SessionUser user){
         if (httpSession == null || !loginKey.equals(httpSession.getAttribute(LOGINKEY)))
-            throw new GeneralException(Code.NOT_SESSION);
+            throw new GlobalException(Code.NOT_SESSION);
         if (user == null)
-            throw new GeneralException(Code.NOT_IN_USER);
-    }
-
-    private SignupDTO buildWithUserId(Long id, SignupDTO user){
-        return SignupDTO.builder()
-                .userId(id)
-                .loginId(user.getLoginId())
-                .password(user.getPassword())
-                .name(user.getName())
-                .birth(user.getBirth())
-                .tel(user.getTel())
-                .email(user.getEmail())
-                .addr(user.getAddr())
-                .addrDetail(user.getAddrDetail())
-                .zip(user.getZip())
-                .gender(user.getGender())
-                .grade(user.getGrade())
-                .build();
+            throw new GlobalException(Code.NOT_IN_USER);
     }
 
 }

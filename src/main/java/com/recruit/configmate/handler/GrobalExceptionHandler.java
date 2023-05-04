@@ -1,7 +1,7 @@
 package com.recruit.configmate.handler;
 
 import com.recruit.commonmate.enums.Code;
-import com.recruit.commonmate.GeneralException;
+import com.recruit.commonmate.GlobalException;
 import com.recruit.commonmate.dto.ResponseError;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,8 +17,8 @@ import java.sql.SQLIntegrityConstraintViolationException;
 @RestControllerAdvice(annotations = RestController.class)
 public class GrobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = GeneralException.class)
-    protected ResponseEntity<Object> generalException(GeneralException ex, WebRequest request){
+    @ExceptionHandler(value = GlobalException.class)
+    protected ResponseEntity<Object> globalException(GlobalException ex, WebRequest request){
         return handleExceptionInternal(ex, ex.getCode(), request);
     }
 
@@ -27,7 +27,10 @@ public class GrobalExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, Code.ERR_SQL, request);
     }
 
-    // no handler , 전체적 exception처리
+    @ExceptionHandler(value = Exception.class)
+    protected ResponseEntity<Object> exception(Exception ex, WebRequest request) {
+        return handleExceptionInternal(ex, Code.INTERNAL_ERROR,request);
+    }
 
     private ResponseEntity<Object> handleExceptionInternal(Exception ex,  Code err, WebRequest request){
         return handleExceptionInternal(ex, err, HttpHeaders.EMPTY, err.getStatus(),request);
