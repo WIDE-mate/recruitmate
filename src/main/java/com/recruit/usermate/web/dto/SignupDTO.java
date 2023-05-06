@@ -10,7 +10,7 @@ import javax.validation.constraints.*;
 import java.sql.Date;
 import java.time.LocalDate;
 
-@Schema(description = "회원 등록 및 수정 관련 DTO")
+@Schema(title = "SignupDTO",description = "회원 등록 및 수정 관련 DTO")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

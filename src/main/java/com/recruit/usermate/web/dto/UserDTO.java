@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-@Schema(description = "회원 정보 DTO")
+@Schema(title = "UserDTO",description = "회원 정보 DTO")
 @ApiResponse
 @Getter
 @NoArgsConstructor

@@ -7,7 +7,7 @@ import lombok.Getter;
 
 import java.io.Serializable;
 
-@Schema(description = "세션 정보 DTO")
+@Schema(title = "SessionUser",description = "세션 정보 DTO")
 @Getter
 public class SessionUser implements Serializable {
 

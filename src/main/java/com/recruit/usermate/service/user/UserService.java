@@ -1,6 +1,6 @@
 package com.recruit.usermate.service.user;
 
-import com.recruit.commonmate.GlobalException;
+import com.recruit.commonmate.util.GlobalException;
 import com.recruit.commonmate.enums.Code;
 import com.recruit.usermate.domain.user.User;
 import com.recruit.usermate.domain.user.UserRepository;

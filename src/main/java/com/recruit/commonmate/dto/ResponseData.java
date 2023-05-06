@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 public class ResponseData<T> extends Response{
 
-    @Schema(title = "데이터")
+    @Schema(title = "응답 데이터")
     private final T data;
 
     private ResponseData(T data){

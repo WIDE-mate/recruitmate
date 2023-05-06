@@ -1,8 +1,9 @@
 package com.recruit.configmate.handler;
 
 import com.recruit.commonmate.enums.Code;
-import com.recruit.commonmate.GlobalException;
+import com.recruit.commonmate.util.GlobalException;
 import com.recruit.commonmate.dto.ResponseError;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
