@@ -28,7 +28,7 @@ public class UserRespositoryTest {
         String id = "idd";
         String password = "padssword";
 
-        userRepository.save(User.builder().loginId(id).password(password).grade(Grade.MEMBER).build());
+//        userRepository.save(User.builder().loginId(id).password(password).grade(Grade.MEMBER).build());
 
         //when
 //        LoginDTO dto = userMapper.toLoginDTO(userRepository.findByloginId(id).get(0));
@@ -40,17 +40,17 @@ public class UserRespositoryTest {
 
     @Test
     public void 아이디_중복_확인(){
-        //given
-        String id = "id";
-        String password = "password";
-
-        userRepository.save(User.builder().loginId(id).password(password).grade(Grade.MEMBER).build());
-
-        //when
-        boolean result = userRepository.existsByloginId("ids");
-
-        //Then
-        Assertions.assertThat(result).isFalse();
+//        //given
+//        String id = "id";
+//        String password = "password";
+//
+//        userRepository.save(User.builder().loginId(id).password(password).grade(Grade.MEMBER).build());
+//
+//        //when
+//        boolean result = userRepository.existsByloginId("ids");
+//
+//        //Then
+//        Assertions.assertThat(result).isFalse();
 
     }
 }

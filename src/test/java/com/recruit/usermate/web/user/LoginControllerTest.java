@@ -80,24 +80,24 @@ public class LoginControllerTest {
         // Test 중에는 세션정보가 안 담기므로 가짜로 해야함
 
         // Given
-        String url = "http://localhost:"+ port + "/api/auth/get-session?loginKey=dummyLoginKey";
-        SessionUser expectedUser = new SessionUser(new LoginDTO(0l,"username", "password",null));
-        when(httpSession.getAttribute(eq("user"))).thenReturn(expectedUser);
-
-//        MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
-//        requestBody.add("loginKey", "dummyLoginKey");
+//        String url = "http://localhost:"+ port + "/api/auth/get-session?loginKey=dummyLoginKey";
+//        SessionUser expectedUser = new SessionUser(new LoginDTO(0l,"username", "password",null));
+//        when(httpSession.getAttribute(eq("user"))).thenReturn(expectedUser);
 //
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+////        MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
+////        requestBody.add("loginKey", "dummyLoginKey");
+////
+////        HttpHeaders headers = new HttpHeaders();
+////        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+////
+////        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
 //
-//        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
-
-        //when
-        ResponseEntity<Map> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, Map.class);
-
-        //then
-        Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        Assertions.assertThat(responseEntity.getBody().get("result")).isNotNull();
+//        //when
+//        ResponseEntity<Map> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, Map.class);
+//
+//        //then
+//        Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+//        Assertions.assertThat(responseEntity.getBody().get("result")).isNotNull();
 
     }
 

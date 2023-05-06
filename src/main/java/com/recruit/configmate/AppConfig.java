@@ -13,15 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class AppConfig {
 
     @Bean
-    public OpenAPI openAPI(){
-        Info info = new Info()
-                .version("v1.0.0")
-                .title("채용 사이트 API")
-                .description("API Description");
-        return new OpenAPI().info(info);
-    }
-
-    @Bean
     public BCryptPasswordEncoder encoder(){
         return new BCryptPasswordEncoder(16);
     }
@@ -33,4 +24,5 @@ public class AppConfig {
         enumFactory.put("GRADE", Grade.class);
         return enumFactory;
     }
+
 }

@@ -1,7 +1,11 @@
 package com.recruit.commonmate.dto;
 
 import com.recruit.commonmate.enums.Code;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Getter;
 
+@Schema(description = "응답 실패 DTO")
+@Getter
 public class ResponseError extends Response{
 
     public ResponseError(Code err) {

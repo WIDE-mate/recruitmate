@@ -11,7 +11,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 import javax.servlet.http.HttpSession;
 
-import static com.recruit.commonmate.GlobalVariables.USER;
+import static com.recruit.commonmate.util.GlobalVariables.USER;
 
 @RequiredArgsConstructor
 @Component

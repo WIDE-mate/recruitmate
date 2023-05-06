@@ -1,11 +1,14 @@
 package com.recruit.commonmate.dto;
 
 import com.recruit.commonmate.enums.Code;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 
+@Schema(description = "응답 성공 DTO")
 @Getter
 public class ResponseData<T> extends Response{
 
+    @Schema(title = "응답 데이터")
     private final T data;
 
     private ResponseData(T data){

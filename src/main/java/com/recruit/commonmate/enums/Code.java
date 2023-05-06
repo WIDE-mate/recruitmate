@@ -1,6 +1,6 @@
 package com.recruit.commonmate.enums;
 
-import com.recruit.commonmate.GeneralException;
+import com.recruit.commonmate.util.GlobalException;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
@@ -50,7 +50,7 @@ public enum Code {
 
     public static Code valueOf(HttpStatus status){
         if (status == null)
-            throw new GeneralException("status가 존재하지 않습니다.");
+            throw new GlobalException("status가 존재하지 않습니다.");
         return Arrays.stream(values())
                 .filter(errCode -> errCode.getStatus() == status)
                 .findFirst()

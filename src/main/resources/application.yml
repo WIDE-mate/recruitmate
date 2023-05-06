@@ -25,14 +25,15 @@ springdoc:
   api-docs:
     groups:
       enabled: true
-#    resolve-schema-properties: true
   swagger-ui:
     disable-swagger-default-url : true
     doc-expansion: none
     tags-sorter: alpha
     operations-sorter: alpha
     path : /swagger-ui.html
-
+#logging:
+#  level:
+#    com.recruit.configmate: info
 ---
 spring:
   profiles: release

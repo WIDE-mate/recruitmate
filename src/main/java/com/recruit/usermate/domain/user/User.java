@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
@@ -21,7 +21,7 @@ public class User {
     private String loginId;
     private String password;
     private String name;
-    private Date birth;
+    private LocalDate birth;
     private String tel;
     private String email;
     private String addr;
@@ -33,7 +33,7 @@ public class User {
     private Grade grade;
 
     @Builder
-    public User(Long userId, String loginId, String password, String name, Date birth, String tel, Grade grade,
+    public User(Long userId, String loginId, String password, String name, LocalDate birth, String tel, Grade grade,
                 String email, String addr, String addrDetail, String zip, Gender gender) {
         this.userId = userId;
         this.loginId = loginId;
