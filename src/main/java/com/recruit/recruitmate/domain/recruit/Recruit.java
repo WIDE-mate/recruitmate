@@ -1,27 +1,29 @@
 package com.recruit.recruitmate.domain.recruit;
 
+import com.recruit.commonmate.enums.Task;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.sql.Date;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
 @Entity
 public class Recruit {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long recruitId;
     private String reTitle;
     private String reContent;
-    private Date period;
+    private LocalDate period;
     private String requires;
-    private String task;
+    @Enumerated(EnumType.STRING)
+    private Task task;
 
     @Builder
-    public Recruit(Long recruitId, String reTitle, String reContent, Date period, String requires, String task) {
+    public Recruit(Long recruitId, String reTitle, String reContent, LocalDate period, String requires, Task task) {
         this.recruitId = recruitId;
         this.reTitle = reTitle;
         this.reContent = reContent;
