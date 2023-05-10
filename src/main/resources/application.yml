@@ -3,10 +3,9 @@ spring:
     active: default
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    # url: jdbc:mysql://{엔드포인트}:{포트번호}/{(초기)데이터베이스}
-    url: jdbc:mysql://recruit-mate.cvyja11dorx5.ap-northeast-2.rds.amazonaws.com:3306/recruit_mate
-    username: admin
-    password: admin1234
+    url: ENC(u4xFmUig6m6OSM0oa30LOamRWI+YrR42fSbEGWzcaI5meDYH0Rc4VvacsB9rrXJcZaWjoLHhb1aciYqY5Y4KqT0rcfL6nFtceyaiTK+rn/Rt0bQc79f1PxwGtU+ZMNM8WEgU68Z16Ns=)
+    username: ENC(yBOaAlgdmHgfFJyVMxwVGQ==)
+    password: ENC(6Yy5Dr9lpyzG7+vAkmJhqw/1XkskdNAg)
   jpa:
 #    show-sql: true
     properties:
