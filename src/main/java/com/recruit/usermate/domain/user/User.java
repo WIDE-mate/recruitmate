@@ -1,7 +1,7 @@
 package com.recruit.usermate.domain.user;
 
-import com.recruit.commonmate.enums.Gender;
-import com.recruit.commonmate.enums.Grade;
+import com.recruit.commonmate.comcode.enums.Gender;
+import com.recruit.commonmate.comcode.enums.Grade;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

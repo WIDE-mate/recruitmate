@@ -1,6 +1,6 @@
 package com.recruit.usermate.web.dto;
 
-import com.recruit.commonmate.enums.Grade;
+import com.recruit.commonmate.comcode.enums.Grade;
 import com.recruit.usermate.domain.user.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;

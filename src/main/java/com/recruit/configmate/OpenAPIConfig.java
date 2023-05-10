@@ -1,6 +1,5 @@
 package com.recruit.configmate;
 
-import com.recruit.commonmate.dto.ResponseError;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.models.Operation;
@@ -10,10 +9,6 @@ import io.swagger.v3.oas.models.responses.ApiResponses;
 import org.springdoc.core.customizers.OpenApiCustomiser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.yaml.snakeyaml.emitter.ScalarAnalysis;
-
-import java.util.Map;
-import java.util.function.Predicate;
 
 @OpenAPIDefinition(
         info = @Info(
@@ -48,8 +43,10 @@ public class OpenAPIConfig {
 
             openApi.getPaths().remove("/api/json/error");
 
-            openApi.getComponents().getSchemas().entrySet()
-                    .removeIf(entry -> entry.getKey().startsWith("Response"));
+            openApi.getComponents().getSchemas().forEach((key, value) -> {
+                if (key.startsWith("Response"))
+                    value.addExtension("hidden", true);
+            });
         };
     }
 

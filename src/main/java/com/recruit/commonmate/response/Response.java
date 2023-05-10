@@ -1,6 +1,6 @@
-package com.recruit.commonmate.dto;
+package com.recruit.commonmate.response;
 
-import com.recruit.commonmate.enums.Code;
+import com.recruit.commonmate.util.Code;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 

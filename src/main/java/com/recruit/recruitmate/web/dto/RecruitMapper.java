@@ -12,20 +12,12 @@ public interface RecruitMapper {
 
     RecruitMapper INSTANCE = Mappers.getMapper(RecruitMapper.class);
 
-    @Mapping(source = "recruitId",target = "recruitId")
-    @Mapping(source = "reTitle",target = "reTitle")
-    @Mapping(source = "reContent",target = "reContent")
-    @Mapping(source = "period",target = "period")
-    @Mapping(source = "requires",target = "requires")
-    @Mapping(source = "task",target = "task")
-    Recruit toRecruitDTO(RecruitDTO dto);
-
-    @Mapping(source = "recruitId",target = "recruitId")
-    @Mapping(source = "reTitle",target = "reTitle")
-    @Mapping(source = "reContent",target = "reContent")
-    @Mapping(source = "period",target = "period")
-    @Mapping(source = "requires",target = "requires")
-    @Mapping(source = "task",target = "task")
-    RecruitDTO toRecruit(Recruit recruit);
+    @Mapping(target = "recruitId", source = "recruitId")
+    @Mapping(target = "reTitle", source = "reTitle")
+    @Mapping(target = "reContent", source = "reContent")
+    @Mapping(target = "period", source = "period")
+    @Mapping(target = "requires", source = "requires")
+    @Mapping(target = "task", source = "task")
+    RecruitDTO toRecruitDTO(Recruit recruit);
 
 }

@@ -1,4 +1,4 @@
-package com.recruit.commonmate.dto;
+package com.recruit.commonmate.comcode.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
