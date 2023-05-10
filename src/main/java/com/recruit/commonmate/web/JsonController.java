@@ -1,11 +1,10 @@
 package com.recruit.commonmate.web;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.recruit.commonmate.dto.EnumDTO;
-import com.recruit.commonmate.dto.ResponseData;
-import com.recruit.commonmate.dto.ResponseError;
-import com.recruit.commonmate.enums.Code;
-import com.recruit.commonmate.util.EnumFactory;
+import com.recruit.commonmate.comcode.dto.EnumDTO;
+import com.recruit.commonmate.response.ResponseData;
+import com.recruit.commonmate.response.ResponseError;
+import com.recruit.commonmate.util.Code;
+import com.recruit.commonmate.comcode.EnumFactory;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

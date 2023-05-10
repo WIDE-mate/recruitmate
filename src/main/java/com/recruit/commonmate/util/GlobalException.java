@@ -1,6 +1,5 @@
 package com.recruit.commonmate.util;
 
-import com.recruit.commonmate.enums.Code;
 import lombok.Getter;
 
 @Getter

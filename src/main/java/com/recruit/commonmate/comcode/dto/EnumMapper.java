@@ -1,4 +1,4 @@
-package com.recruit.commonmate.dto;
+package com.recruit.commonmate.comcode.dto;
 
 public interface EnumMapper {
     String getTitle();

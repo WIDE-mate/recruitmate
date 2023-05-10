@@ -1,7 +1,7 @@
-package com.recruit.commonmate.util;
+package com.recruit.commonmate.comcode;
 
-import com.recruit.commonmate.dto.EnumDTO;
-import com.recruit.commonmate.dto.EnumMapper;
+import com.recruit.commonmate.comcode.dto.EnumDTO;
+import com.recruit.commonmate.comcode.dto.EnumMapper;
 
 import java.util.*;
 import java.util.function.Function;

@@ -1,7 +1,7 @@
 package com.recruit.usermate.service.user;
 
 import com.recruit.commonmate.util.GlobalException;
-import com.recruit.commonmate.enums.Code;
+import com.recruit.commonmate.util.Code;
 import com.recruit.usermate.domain.user.User;
 import com.recruit.usermate.domain.user.UserRepository;
 import com.recruit.usermate.web.dto.LoginDTO;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor

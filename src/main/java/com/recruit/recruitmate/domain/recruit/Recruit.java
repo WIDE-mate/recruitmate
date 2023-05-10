@@ -1,8 +1,8 @@
 package com.recruit.recruitmate.domain.recruit;
 
-import com.recruit.commonmate.enums.Career;
-import com.recruit.commonmate.enums.Requires;
-import com.recruit.commonmate.enums.Task;
+import com.recruit.commonmate.comcode.enums.Career;
+import com.recruit.commonmate.comcode.enums.Requires;
+import com.recruit.commonmate.comcode.enums.Task;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

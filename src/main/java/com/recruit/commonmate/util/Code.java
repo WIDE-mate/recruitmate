@@ -1,6 +1,5 @@
-package com.recruit.commonmate.enums;
+package com.recruit.commonmate.util;
 
-import com.recruit.commonmate.util.GlobalException;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 

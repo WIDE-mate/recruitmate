@@ -1,20 +1,16 @@
 package com.recruit.recruitmate.service.recruit;
 
-import com.recruit.commonmate.enums.Code;
+import com.recruit.commonmate.util.Code;
 import com.recruit.commonmate.util.GlobalException;
-import com.recruit.recruitmate.domain.recruit.Recruit;
 import com.recruit.recruitmate.domain.recruit.RecruitRepository;
 import com.recruit.recruitmate.web.dto.RecruitDTO;
 import com.recruit.recruitmate.web.dto.RecruitMapper;
 import com.recruit.recruitmate.web.dto.RecruitValidDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.expression.spel.ast.OpAnd;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor

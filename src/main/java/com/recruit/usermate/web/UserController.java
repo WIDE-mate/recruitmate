@@ -1,8 +1,8 @@
 package com.recruit.usermate.web;
 
 import com.recruit.commonmate.util.GlobalException;
-import com.recruit.commonmate.enums.Code;
-import com.recruit.commonmate.dto.ResponseData;
+import com.recruit.commonmate.util.Code;
+import com.recruit.commonmate.response.ResponseData;
 import com.recruit.configmate.auth.Login;
 import com.recruit.configmate.auth.dto.SessionUser;
 import com.recruit.usermate.service.user.UserService;

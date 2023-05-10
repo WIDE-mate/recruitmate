@@ -1,6 +1,6 @@
 package com.recruit.configmate.auth.dto;
 
-import com.recruit.commonmate.enums.Grade;
+import com.recruit.commonmate.comcode.enums.Grade;
 import com.recruit.usermate.web.dto.LoginDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;

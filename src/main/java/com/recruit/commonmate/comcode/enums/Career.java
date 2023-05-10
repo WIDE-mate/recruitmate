@@ -1,16 +1,17 @@
-package com.recruit.commonmate.enums;
+package com.recruit.commonmate.comcode.enums;
 
-import com.recruit.commonmate.dto.EnumMapper;
+import com.recruit.commonmate.comcode.dto.EnumMapper;
 
-public enum Gender implements EnumMapper {
-    F("여자"),
-    M("남자");
+public enum Career implements EnumMapper {
+    NEW("신입"),
+    OLD("경력");
 
     private String title;
 
-    Gender(String title){
+    Career(String title){
         this.title = title;
     }
+
 
     @Override
     public String getTitle() {

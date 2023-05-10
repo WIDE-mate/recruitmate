@@ -1,13 +1,12 @@
 package com.recruit.usermate.web.dto;
 
-import com.recruit.commonmate.enums.Gender;
-import com.recruit.commonmate.enums.Grade;
+import com.recruit.commonmate.comcode.enums.Gender;
+import com.recruit.commonmate.comcode.enums.Grade;
 import com.recruit.usermate.domain.user.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 import javax.validation.constraints.*;
-import java.sql.Date;
 import java.time.LocalDate;
 
 @Schema(title = "SignupDTO",description = "회원 등록 및 수정 관련 DTO")

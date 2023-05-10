@@ -1,6 +1,6 @@
-package com.recruit.commonmate.enums;
+package com.recruit.commonmate.comcode.enums;
 
-import com.recruit.commonmate.dto.EnumMapper;
+import com.recruit.commonmate.comcode.dto.EnumMapper;
 
 public enum Grade implements EnumMapper {
     NON_MEMBER("비회원"),
