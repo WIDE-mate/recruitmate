@@ -15,7 +15,7 @@ public enum Code {
 
     // 4xx
     BAD_REQUEST(10000, HttpStatus.BAD_REQUEST, "Bad request"),
-    ERR_PARAMETER(10001,HttpStatus.BAD_REQUEST,"요청에서 필요한 파라미터 누락"),
+    ERR_PARAMETER(10001,HttpStatus.BAD_REQUEST,"잘못된 파라미터"),
     NOT_READ(10002,HttpStatus.BAD_REQUEST,"서버에서 처리될 수 없는 잘못된 요청"),
     ERR_SQL(10003,HttpStatus.BAD_REQUEST,"SQL 구문오류"),
     INVALID(10004,HttpStatus.BAD_REQUEST,"유효성 오류"),
@@ -24,6 +24,8 @@ public enum Code {
     DUPLICATE_ID(11002,HttpStatus.CONFLICT,"중복된 아이디입니다."),
     NOT_SESSION(11003,HttpStatus.UNAUTHORIZED,"세션 혹은 로그인키가 존재하지 않습니다."),
     NOT_IN_USER(11004,HttpStatus.UNAUTHORIZED,"세션에 유저정보가 존재하지 않습니다."),
+
+    RECRUIT_NOT_FOUND(12001, HttpStatus.NOT_FOUND, "존재하지 않는 채용정보입니다."),
 
     // 5xx
     INTERNAL_ERROR(20000, HttpStatus.INTERNAL_SERVER_ERROR, "Internal error");

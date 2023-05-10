@@ -48,13 +48,13 @@ public class UserController {
     }
 
     @Operation(summary = "회원 정보 수정 API",
-            description = "성공시에 수정된 유저정보를 반환<br>(로그인키값 보내주셔야 합니다.)"
+            description = "성공시에 loginId를 반환<br>(로그인키값 보내주셔야 합니다.)"
     )
     @PutMapping("/user-modify")
-    public ResponseData<SignupDTO> userModify(@Parameter(hidden = true) @Login SessionUser user,
+    public ResponseData<String> userModify(@Parameter(hidden = true) @Login SessionUser user,
             @io.swagger.v3.oas.annotations.parameters.RequestBody @RequestBody @Valid SignupDTO dto){
         httpSessionException(dto.getLoginKey(), user);
-        return ResponseData.of(userService.update(dto.withUserId(user.getUserId())));
+        return ResponseData.of(userService.update(dto.withUserId(user.getUserId())).getLoginId());
     }
 
     @Operation(summary = "로그인 사용자 정보 조회 API",

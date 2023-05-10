@@ -35,10 +35,10 @@ public class UserService {
     }
 
     @Transactional
-    public SignupDTO save(SignupDTO dto){
+    public UserDTO save(SignupDTO dto){
         if (userRepository.existsByloginId(dto.getLoginId()))
             throw new GlobalException(Code.DUPLICATE_ID);
-        return userMapper.toSignupDTO(userRepository.save(dto.toEntity(encoder.encode(dto.getPassword()))));
+        return userMapper.toUserDTO(userRepository.save(dto.toEntity(encoder.encode(dto.getPassword()))));
     }
 
     @Transactional
@@ -49,20 +49,19 @@ public class UserService {
     }
 
     @Transactional
-    public SignupDTO update(SignupDTO dto){
+    public UserDTO update(SignupDTO dto){
         User user = userRepository.findByloginId(dto.getLoginId());
         if (user == null)
             throw new GlobalException(Code.USER_NOT_FOUND);
-        return userMapper.toSignupDTO(userRepository.save(
+        return userMapper.toUserDTO(userRepository.save(
                 dto.toEntity(user.getUserId(),user.getLoginId(),user.getPassword(),user.getGrade())));
     }
 
     @Transactional
     public UserDTO findById(Long id){
-        Optional<User> user = userRepository.findById(id);
-        if (user.isEmpty())
-            throw new GlobalException(Code.USER_NOT_FOUND);
-        return userMapper.toUserDTO(user.get());
+        return userRepository.findById(id)
+                .map(userMapper::toUserDTO)
+                .orElse(null);
     }
 
     @Transactional
