@@ -1,7 +1,7 @@
 package com.recruit.configmate.handler;
 
 import com.recruit.commonmate.enums.CODE;
-import com.recruit.commonmate.util.GlobalException;
+import com.recruit.commonmate.global.GlobalException;
 import com.recruit.commonmate.response.ResponseError;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

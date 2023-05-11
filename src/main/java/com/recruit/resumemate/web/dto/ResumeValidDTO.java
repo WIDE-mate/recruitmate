@@ -9,19 +9,25 @@ import com.recruit.usermate.domain.user.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-@Schema(title = "ResumeDTO" , description = "이력서 DTO")
+@Schema(title = "ResumeValidDTO" , description = "이력서 등록 및 수정 관련 DTO")
 @Getter
 @NoArgsConstructor
-public class ResumeDTO {
+public class ResumeValidDTO {
 
     @Schema(title = "이력서 번호")
     private Long resumeId;
+
     @Schema(title = "유저 정보")
+    @NotNull(message = "유저 정보는 핈수 입니다.")
     private User user;
+
     @Schema(title = "이력서 정보")
+    @NotNull(message = "채용 정보는 핈수 입니다.")
     private Recruit recruit;
+
     @Schema(title = "성별")
     private GENDER gender;
     @Schema(title = "영어 이름")
@@ -38,14 +44,18 @@ public class ResumeDTO {
     private CHECK military;
     @Schema(title = "사진")
     private String pic;
+
     @Schema(title = "작성일자")
+    @NotNull(message = "작성 일자는 핈수 입니다.")
     private LocalDate creDate;
-    @Schema(title = "등록상태")
+
+    @Schema(title = "등록 상태")
+    @NotNull(message = "등록 상태는 핈수 입니다.")
     private STATE state;
 
     @Builder
-    public ResumeDTO(Long resumeId, User user, Recruit recruit, GENDER gender, String engName, String email, String addr, String addrDetail, String zip,
-                CHECK military, String pic, LocalDate creDate, STATE state) {
+    public ResumeValidDTO(Long resumeId, User user, Recruit recruit, GENDER gender, String engName, String email, String addr, String addrDetail, String zip,
+                    CHECK military, String pic, LocalDate creDate, STATE state) {
         this.resumeId = resumeId;
         this.user = user;
         this.recruit = recruit;

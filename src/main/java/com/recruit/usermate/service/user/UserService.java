@@ -1,6 +1,6 @@
 package com.recruit.usermate.service.user;
 
-import com.recruit.commonmate.util.GlobalException;
+import com.recruit.commonmate.global.GlobalException;
 import com.recruit.commonmate.enums.CODE;
 import com.recruit.usermate.domain.user.User;
 import com.recruit.usermate.domain.user.UserRepository;
@@ -34,21 +34,14 @@ public class UserService {
     }
 
     @Transactional
-    public UserDTO save(SignupDTO dto){
+    public UserDTO userSave(SignupDTO dto){
         if (userRepository.existsByloginId(dto.getLoginId()))
             throw new GlobalException(CODE.DUPLICATE_ID);
         return userMapper.toUserDTO(userRepository.save(dto.toEntity(encoder.encode(dto.getPassword()))));
     }
 
     @Transactional
-    public void delete(Long id){
-        if (!userRepository.existsById(id))
-            throw new GlobalException(CODE.USER_NOT_FOUND);
-        userRepository.deleteById(id);
-    }
-
-    @Transactional
-    public UserDTO update(SignupDTO dto){
+    public UserDTO userUpdate(SignupDTO dto){
         User user = userRepository.findByloginId(dto.getLoginId());
         if (user == null)
             throw new GlobalException(CODE.USER_NOT_FOUND);
@@ -57,14 +50,21 @@ public class UserService {
     }
 
     @Transactional
-    public UserDTO findById(Long id){
+    public void userDelete(Long id){
+        if (!userRepository.existsById(id))
+            throw new GlobalException(CODE.USER_NOT_FOUND);
+        userRepository.deleteById(id);
+    }
+
+    @Transactional
+    public UserDTO getUser(Long id){
         return userRepository.findById(id)
                 .map(userMapper::toUserDTO)
                 .orElse(null);
     }
 
     @Transactional
-    public List<UserDTO> findAll(){
+    public List<UserDTO> getAllUser(){
         return userRepository.findAll().stream()
                 .map(userMapper::toUserDTO)
                 .collect(Collectors.toList());
