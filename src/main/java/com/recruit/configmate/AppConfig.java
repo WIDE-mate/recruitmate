@@ -2,14 +2,10 @@ package com.recruit.configmate;
 
 import com.recruit.commonmate.comcode.EnumFactory;
 import com.recruit.commonmate.comcode.dto.EnumMapper;
-import com.recruit.commonmate.comcode.enums.Gender;
-import com.recruit.commonmate.comcode.enums.Grade;
-import lombok.RequiredArgsConstructor;
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 import org.reflections.Reflections;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,7 +26,7 @@ public class AppConfig {
         Reflections reflections = new Reflections("com.recruit.commonmate.comcode.enums");
         Set<Class<? extends EnumMapper>> set = reflections.getSubTypesOf(EnumMapper.class);
         for (Class<? extends EnumMapper> aClass : set){
-            enumFactory.put(aClass.getSimpleName().toUpperCase(), aClass);
+            enumFactory.put(aClass.getSimpleName(), aClass);
         }
         return enumFactory;
     }

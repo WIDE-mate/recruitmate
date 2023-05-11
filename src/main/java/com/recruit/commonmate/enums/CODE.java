@@ -1,5 +1,6 @@
-package com.recruit.commonmate.util;
+package com.recruit.commonmate.enums;
 
+import com.recruit.commonmate.util.GlobalException;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
@@ -8,7 +9,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 @Getter
-public enum Code {
+public enum CODE {
     // success
     OK(0, HttpStatus.OK,"ok"),
 
@@ -33,7 +34,7 @@ public enum Code {
     private final HttpStatus status;
     private final String message;
 
-    Code(Integer code, HttpStatus status, String message) {
+    CODE(Integer code, HttpStatus status, String message) {
         this.code = code;
         this.status = status;
         this.message = message;
@@ -49,7 +50,7 @@ public enum Code {
         return this.getMessage(this.getMessage() + " - " + e.getMessage());
     }
 
-    public static Code valueOf(HttpStatus status){
+    public static CODE valueOf(HttpStatus status){
         if (status == null)
             throw new GlobalException("status가 존재하지 않습니다.");
         return Arrays.stream(values())
@@ -59,9 +60,9 @@ public enum Code {
                     if (status.is4xxClientError())
                         return null;
                     else if(status.is5xxServerError())
-                        return Code.INTERNAL_ERROR;
+                        return CODE.INTERNAL_ERROR;
                     else
-                        return Code.OK;
+                        return CODE.OK;
                 });
     }
 

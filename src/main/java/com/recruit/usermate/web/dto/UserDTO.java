@@ -1,7 +1,7 @@
 package com.recruit.usermate.web.dto;
 
-import com.recruit.commonmate.comcode.enums.Gender;
-import com.recruit.commonmate.comcode.enums.Grade;
+import com.recruit.commonmate.comcode.enums.GENDER;
+import com.recruit.commonmate.comcode.enums.GRADE;
 import com.recruit.usermate.domain.user.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -38,13 +38,13 @@ public class UserDTO {
     @Schema(title = "우편번호")
     private String zip;
     @Schema(title = "성별")
-    private Gender gender;
+    private GENDER gender;
     @Schema(title = "등급")
-    private Grade grade;
+    private GRADE grade;
 
     @Builder
     public UserDTO(Long userId, String loginId, String password, String name, LocalDate birth, String tel,
-                    String email, String addr, String addrDetail, String zip, Gender gender, Grade grade) {
+                   String email, String addr, String addrDetail, String zip, GENDER gender, GRADE grade) {
         this.userId = userId;
         this.loginId = loginId;
         this.password = password;

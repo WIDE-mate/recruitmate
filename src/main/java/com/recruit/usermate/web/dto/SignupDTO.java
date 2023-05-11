@@ -1,7 +1,7 @@
 package com.recruit.usermate.web.dto;
 
-import com.recruit.commonmate.comcode.enums.Gender;
-import com.recruit.commonmate.comcode.enums.Grade;
+import com.recruit.commonmate.comcode.enums.GENDER;
+import com.recruit.commonmate.comcode.enums.GRADE;
 import com.recruit.usermate.domain.user.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
@@ -58,17 +58,17 @@ public class SignupDTO {
 
     @Schema(title = "성별")
     @NotNull(message = "성별은 필수 입력입니다.")
-    private Gender gender;
+    private GENDER gender;
 
     @Schema(title = "등급")
-    private Grade grade;
+    private GRADE grade;
 
     @Schema(title = "로그인키")
     private String loginKey;
 
     @Builder
     public SignupDTO(Long userId, String loginId, String password, String name, LocalDate birth, String tel, String loginKey,
-                    String email, String addr, String addrDetail, String zip, Gender gender, Grade grade) {
+                     String email, String addr, String addrDetail, String zip, GENDER gender, GRADE grade) {
         this.userId = userId;
         this.loginId = loginId;
         this.password = password;
@@ -93,10 +93,10 @@ public class SignupDTO {
     public User toEntity(String pw){
         return User.builder().userId(userId).loginId(loginId).password(pw)
                 .name(name).birth(birth).tel(tel).email(email).addr(addr).addrDetail(addrDetail).zip(zip)
-                .gender(gender).grade(Grade.MEMBER).build();
+                .gender(gender).grade(GRADE.MEMBER).build();
     }
 
-    public User toEntity(Long id, String lid, String pw, Grade gd){
+    public User toEntity(Long id, String lid, String pw, GRADE gd){
         return User.builder().userId(id).loginId(lid).password(pw)
                 .name(name).birth(birth).tel(tel).email(email).addr(addr).addrDetail(addrDetail).zip(zip)
                 .gender(gender).grade(gd).build();

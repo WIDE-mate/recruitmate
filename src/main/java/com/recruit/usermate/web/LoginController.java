@@ -1,7 +1,7 @@
 package com.recruit.usermate.web;
 
 import com.recruit.commonmate.util.GlobalException;
-import com.recruit.commonmate.util.Code;
+import com.recruit.commonmate.enums.CODE;
 import com.recruit.commonmate.response.ResponseData;
 import com.recruit.configmate.auth.Login;
 import com.recruit.configmate.auth.dto.SessionUser;
@@ -48,7 +48,7 @@ public class LoginController {
     @GetMapping("/logout/{loginKey}")
     public ResponseData<String> logout(@PathVariable String loginKey){
         if (httpSession == null || !loginKey.equals(httpSession.getAttribute(LOGINKEY)))
-            throw new GlobalException(Code.NOT_SESSION);
+            throw new GlobalException(CODE.NOT_SESSION);
         httpSession.invalidate();
         return ResponseData.of("1");
     }
@@ -59,9 +59,9 @@ public class LoginController {
     public ResponseData<SessionUser> getSession(@Parameter(hidden = true) @Login SessionUser user,
             @Parameter(name = "loginKey", description = "로그인 키") @PathVariable String loginKey){
         if (httpSession == null || !loginKey.equals(httpSession.getAttribute(LOGINKEY)))
-            throw new GlobalException(Code.NOT_SESSION);
+            throw new GlobalException(CODE.NOT_SESSION);
         if (user == null)
-            throw new GlobalException(Code.NOT_IN_USER);
+            throw new GlobalException(CODE.NOT_IN_USER);
         return ResponseData.of(user);
     }
 

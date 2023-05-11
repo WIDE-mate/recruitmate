@@ -1,6 +1,7 @@
 package com.recruit.recruitmate.service.recruit;
 
-import com.recruit.commonmate.util.Code;
+import com.recruit.commonmate.comcode.enums.CAREER;
+import com.recruit.commonmate.enums.CODE;
 import com.recruit.commonmate.util.GlobalException;
 import com.recruit.recruitmate.domain.recruit.RecruitRepository;
 import com.recruit.recruitmate.web.dto.RecruitDTO;
@@ -10,7 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -28,14 +30,14 @@ public class RecruitService {
     @Transactional
     public RecruitDTO recruitUpdate(RecruitValidDTO dto){
         if (!recruitRepository.existsById(dto.getRecruitId()))
-            throw new GlobalException(Code.RECRUIT_NOT_FOUND);
+            throw new GlobalException(CODE.RECRUIT_NOT_FOUND);
         return recruitMapper.toRecruitDTO(recruitRepository.save(dto.toEntity()));
     }
 
     @Transactional
     public void recruitDelete(Long id){
         if (!recruitRepository.existsById(id))
-            throw new GlobalException(Code.RECRUIT_NOT_FOUND);
+            throw new GlobalException(CODE.RECRUIT_NOT_FOUND);
         recruitRepository.deleteById(id);
     }
 
@@ -51,6 +53,14 @@ public class RecruitService {
         return recruitRepository.findAll().stream()
                 .map(recruitMapper::toRecruitDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public Map<String,Long> countCareer(LocalDate date){
+        return Arrays.stream(CAREER.values())
+                .collect(Collectors.toMap(CAREER::getTitle,
+                        career ->
+                            recruitRepository.countByCareerAndPeriodGreaterThanEqual(career,date)));
     }
 
 }

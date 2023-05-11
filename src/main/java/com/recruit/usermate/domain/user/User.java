@@ -1,7 +1,7 @@
 package com.recruit.usermate.domain.user;
 
-import com.recruit.commonmate.comcode.enums.Gender;
-import com.recruit.commonmate.comcode.enums.Grade;
+import com.recruit.commonmate.comcode.enums.GENDER;
+import com.recruit.commonmate.comcode.enums.GRADE;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,13 +28,13 @@ public class User {
     private String addrDetail;
     private String zip;
     @Enumerated(EnumType.STRING)
-    private Gender gender;
+    private GENDER gender;
     @Enumerated(EnumType.STRING)
-    private Grade grade;
+    private GRADE grade;
 
     @Builder
-    public User(Long userId, String loginId, String password, String name, LocalDate birth, String tel, Grade grade,
-                String email, String addr, String addrDetail, String zip, Gender gender) {
+    public User(Long userId, String loginId, String password, String name, LocalDate birth, String tel, GRADE grade,
+                String email, String addr, String addrDetail, String zip, GENDER gender) {
         this.userId = userId;
         this.loginId = loginId;
         this.password = password;

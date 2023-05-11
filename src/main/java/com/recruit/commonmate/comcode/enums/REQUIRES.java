@@ -2,7 +2,7 @@ package com.recruit.commonmate.comcode.enums;
 
 import com.recruit.commonmate.comcode.dto.EnumMapper;
 
-public enum Requires implements EnumMapper {
+public enum REQUIRES implements EnumMapper {
     EXP_ONE("경력 1년"),
     EXP_TWO("경력 2년"),
     EXP_THREE("경력 3년"),
@@ -15,7 +15,7 @@ public enum Requires implements EnumMapper {
 
     private String title;
 
-    Requires(String title){
+    REQUIRES(String title){
         this.title = title;
     }
 

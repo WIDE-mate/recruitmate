@@ -1,6 +1,6 @@
 package com.recruit.commonmate.response;
 
-import com.recruit.commonmate.util.Code;
+import com.recruit.commonmate.enums.CODE;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
@@ -16,15 +16,15 @@ public class Response{
     @Schema(title = "메세지")
     private final String message;
 
-    public static Response of(Boolean success, Code code){
+    public static Response of(Boolean success, CODE code){
         return new Response(success, code.getCode(), code.getMessage());
     }
 
-    public static Response of(Boolean success, Code err, Exception e){
+    public static Response of(Boolean success, CODE err, Exception e){
         return new Response(success,err.getCode(),err.getMessage(e));
     }
 
-    public static Response of(Boolean success, Code err, String msg){
+    public static Response of(Boolean success, CODE err, String msg){
         return new Response(success,err.getCode(),err.getMessage(msg));
     }
 

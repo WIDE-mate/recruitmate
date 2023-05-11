@@ -1,8 +1,8 @@
 package com.recruit.recruitmate.web.dto;
 
-import com.recruit.commonmate.comcode.enums.Career;
-import com.recruit.commonmate.comcode.enums.Requires;
-import com.recruit.commonmate.comcode.enums.Task;
+import com.recruit.commonmate.comcode.enums.CAREER;
+import com.recruit.commonmate.comcode.enums.REQUIRES;
+import com.recruit.commonmate.comcode.enums.TASK;
 import com.recruit.recruitmate.domain.recruit.Recruit;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
@@ -25,15 +25,15 @@ public class RecruitDTO {
     @Schema(title = "기간")
     private LocalDate period;
     @Schema(title = "지원조건")
-    private Requires requires;
+    private REQUIRES requires;
     @Schema(title = "직무")
-    private Task task;
+    private TASK task;
     @Schema(title = "채용구분")
-    private Career career;
+    private CAREER career;
 
     @Builder
     public RecruitDTO(Long recruitId, String reTitle, String reContent, LocalDate period,
-                    Requires requires, Task task, Career career) {
+                      REQUIRES requires, TASK task, CAREER career) {
         this.recruitId = recruitId;
         this.reTitle = reTitle;
         this.reContent = reContent;
