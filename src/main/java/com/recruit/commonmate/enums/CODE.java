@@ -1,6 +1,6 @@
 package com.recruit.commonmate.enums;
 
-import com.recruit.commonmate.util.GlobalException;
+import com.recruit.commonmate.global.GlobalException;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
@@ -26,6 +26,9 @@ public enum CODE {
     NOT_IN_USER(11004,HttpStatus.UNAUTHORIZED,"세션에 유저정보가 존재하지 않습니다."),
 
     RECRUIT_NOT_FOUND(12001, HttpStatus.NOT_FOUND, "존재하지 않는 채용정보입니다."),
+
+    RESUME_NOT_FOUND(12001, HttpStatus.NOT_FOUND, "존재하지 않는 이력서입니다."),
+    RESUME_EXISTS(12001, HttpStatus.NOT_FOUND, "이미 존재하는 이력서입니다."),
 
     // 5xx
     INTERNAL_ERROR(20000, HttpStatus.INTERNAL_SERVER_ERROR, "Internal error");

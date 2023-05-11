@@ -1,4 +1,4 @@
-package com.recruit.commonmate.util;
+package com.recruit.commonmate.global;
 
 import com.recruit.commonmate.enums.CODE;
 import lombok.Getter;

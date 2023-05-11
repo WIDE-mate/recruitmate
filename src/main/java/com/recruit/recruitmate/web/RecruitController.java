@@ -18,24 +18,24 @@ import java.util.Map;
 @Tag(name = "채용 APi", description = "채용 정보 API")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/re")
+@RequestMapping("/api/recruit")
 public class RecruitController {
 
     private final RecruitService recruitService;
 
-    @Operation(summary = "채용 정보 저장 API",description = "pk 자동 생성")
+    @Operation(summary = "채용 정보 저장 API",description = "성공 시에 채용 ID 반환")
     @PostMapping("/save")
     public ResponseData<String> recruitSave(@RequestBody @Valid RecruitValidDTO dto){
         return ResponseData.of(recruitService.recruitSave(dto).getRecruitId().toString());
     }
 
-    @Operation(summary = "채용 정보 수정 API",description = "설명")
+    @Operation(summary = "채용 정보 수정 API",description = "성공 시에 채용 ID 반환")
     @PutMapping("/update")
     public ResponseData<String> recruitUpdate(@RequestBody @Valid RecruitValidDTO dto){
         return ResponseData.of(recruitService.recruitUpdate(dto).getRecruitId().toString());
     }
 
-    @Operation(summary = "채용 정보 삭제 API",description = "설명")
+    @Operation(summary = "채용 정보 삭제 API",description = "성공시에 1을 반환")
     @DeleteMapping("/delete/{recruitId}")
     public ResponseData<String> recruitDelete(@Parameter(name = "recruitId", description = "채용번호",required = true)
             @PathVariable String recruitId){
@@ -43,22 +43,22 @@ public class RecruitController {
         return ResponseData.of("1");
     }
 
-    @Operation(summary = "채용 정보 조회 API",description = "설명")
+    @Operation(summary = "채용 정보 조회 API",description = "특정 채용 정보 반환")
     @GetMapping("/{recruitId}")
     public ResponseData<RecruitDTO> getRecruit(@Parameter(name = "recruitId", description = "채용번호",required = true)
             @PathVariable String recruitId){
         return ResponseData.of(recruitService.getRecruit(Long.valueOf(recruitId)));
     }
 
-    @Operation(summary = "채용 정보 전체 조회 API",description = "만료된 채용까지 전체 조회")
+    @Operation(summary = "채용 정보 전체 조회 API",description = "전체 채용 정보 반환")
     @GetMapping("/all")
     public ResponseData<List<RecruitDTO>> getAllRecruit(){
         return ResponseData.of(recruitService.getAllRecruit());
     }
 
-    @Operation(summary = "신입/경력 갯수 조회 API",description = "설명")
+    @Operation(summary = "신입/경력 갯수 조회 API",description = "신입/경력 갯수 반환")
     @GetMapping("/cnt-career")
-    public ResponseData<Map<String,Long>> getRecruit(@Parameter(name = "period", description = "채용 만료 기간")
+    public ResponseData<Map<String,Long>> countCareer(@Parameter(name = "period", description = "채용 만료 기간")
             @RequestParam(name = "period", defaultValue = "${now}") LocalDate period){
         return ResponseData.of(recruitService.countCareer(period));
     }

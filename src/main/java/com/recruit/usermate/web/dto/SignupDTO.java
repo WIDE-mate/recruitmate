@@ -62,13 +62,12 @@ public class SignupDTO {
 
     @Schema(title = "등급")
     private GRADE grade;
-
     @Schema(title = "로그인키")
     private String loginKey;
 
     @Builder
     public SignupDTO(Long userId, String loginId, String password, String name, LocalDate birth, String tel, String loginKey,
-                     String email, String addr, String addrDetail, String zip, GENDER gender, GRADE grade) {
+            String email, String addr, String addrDetail, String zip, GENDER gender, GRADE grade) {
         this.userId = userId;
         this.loginId = loginId;
         this.password = password;

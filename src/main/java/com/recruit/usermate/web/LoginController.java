@@ -1,6 +1,6 @@
 package com.recruit.usermate.web;
 
-import com.recruit.commonmate.util.GlobalException;
+import com.recruit.commonmate.global.GlobalException;
 import com.recruit.commonmate.enums.CODE;
 import com.recruit.commonmate.response.ResponseData;
 import com.recruit.configmate.auth.Login;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.security.SecureRandom;
 import java.util.Base64;
 
-import static com.recruit.commonmate.util.GlobalVariables.*;
+import static com.recruit.commonmate.global.GlobalVariables.*;
 
 @Tag(name = "유저 권한", description = "유저 권한 관련 처리 API 입니다.")
 @RequiredArgsConstructor

@@ -2,7 +2,7 @@ package com.recruit.recruitmate.service.recruit;
 
 import com.recruit.commonmate.comcode.enums.CAREER;
 import com.recruit.commonmate.enums.CODE;
-import com.recruit.commonmate.util.GlobalException;
+import com.recruit.commonmate.global.GlobalException;
 import com.recruit.recruitmate.domain.recruit.RecruitRepository;
 import com.recruit.recruitmate.web.dto.RecruitDTO;
 import com.recruit.recruitmate.web.dto.RecruitMapper;

@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
-@Schema(title = "RecruitValidDTO", description = "채용 저장 및 처리 관련 DTO")
+@Schema(title = "RecruitValidDTO", description = "채용 유효성 체크 DTO")
 @Getter
 @NoArgsConstructor
 public class RecruitValidDTO {

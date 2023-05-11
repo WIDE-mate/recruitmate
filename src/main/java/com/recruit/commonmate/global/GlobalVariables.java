@@ -1,4 +1,4 @@
-package com.recruit.commonmate.util;
+package com.recruit.commonmate.global;
 
 public class GlobalVariables {
     public static final String LOGINKEY = "loginkey";
