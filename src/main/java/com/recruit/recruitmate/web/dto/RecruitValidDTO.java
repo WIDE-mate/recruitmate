@@ -1,8 +1,8 @@
 package com.recruit.recruitmate.web.dto;
 
-import com.recruit.commonmate.comcode.enums.Career;
-import com.recruit.commonmate.comcode.enums.Requires;
-import com.recruit.commonmate.comcode.enums.Task;
+import com.recruit.commonmate.comcode.enums.CAREER;
+import com.recruit.commonmate.comcode.enums.REQUIRES;
+import com.recruit.commonmate.comcode.enums.TASK;
 import com.recruit.recruitmate.domain.recruit.Recruit;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
@@ -38,19 +38,19 @@ public class RecruitValidDTO {
 
     @Schema(title = "지원조건")
     @NotNull(message = "지원조건은 필수 입력입니다.")
-    private Requires requires;
+    private REQUIRES requires;
 
     @Schema(title = "직무")
     @NotNull(message = "직무는 필수 입력입니다.")
-    private Task task;
+    private TASK task;
 
     @Schema(title = "채용구분")
     @NotNull(message = "채용구분은 필수 입력입니다.")
-    private Career career;
+    private CAREER career;
 
     @Builder
     public RecruitValidDTO(Long recruitId, String reTitle, String reContent, LocalDate period,
-                        Requires requires, Task task, Career career) {
+                           REQUIRES requires, TASK task, CAREER career) {
         this.recruitId = recruitId;
         this.reTitle = reTitle;
         this.reContent = reContent;

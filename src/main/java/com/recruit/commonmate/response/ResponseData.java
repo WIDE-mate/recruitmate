@@ -1,6 +1,6 @@
 package com.recruit.commonmate.response;
 
-import com.recruit.commonmate.util.Code;
+import com.recruit.commonmate.enums.CODE;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 
@@ -12,12 +12,12 @@ public class ResponseData<T> extends Response{
     private final T data;
 
     private ResponseData(T data){
-        super(true, Code.OK.getCode(),Code.OK.getMessage());
+        super(true, CODE.OK.getCode(), CODE.OK.getMessage());
         this.data = data;
     }
 
     private ResponseData(T data, String msg){
-        super(true, Code.OK.getCode(),msg);
+        super(true, CODE.OK.getCode(),msg);
         this.data = data;
     }
 

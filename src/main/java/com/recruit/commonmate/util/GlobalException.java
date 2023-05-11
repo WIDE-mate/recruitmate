@@ -1,27 +1,28 @@
 package com.recruit.commonmate.util;
 
+import com.recruit.commonmate.enums.CODE;
 import lombok.Getter;
 
 @Getter
 public class GlobalException extends RuntimeException{
-    private final Code code;
+    private final CODE code;
 
     public GlobalException(){
-        super(Code.INTERNAL_ERROR.getMessage());
-        this.code = Code.INTERNAL_ERROR;
+        super(CODE.INTERNAL_ERROR.getMessage());
+        this.code = CODE.INTERNAL_ERROR;
     }
 
-    public GlobalException(Code code){
+    public GlobalException(CODE code){
         super(code.getMessage());
         this.code = code;
     }
 
     public GlobalException(String msg){
         super(msg);
-        this.code = Code.INTERNAL_ERROR;
+        this.code = CODE.INTERNAL_ERROR;
     }
 
-    public GlobalException(Code code, String msg){
+    public GlobalException(CODE code, String msg){
         super(msg);
         this.code = code;
     }

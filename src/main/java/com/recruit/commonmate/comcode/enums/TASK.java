@@ -2,7 +2,7 @@ package com.recruit.commonmate.comcode.enums;
 
 import com.recruit.commonmate.comcode.dto.EnumMapper;
 
-public enum Task implements EnumMapper{
+public enum TASK implements EnumMapper{
     FINANCE("재무/회계"),
     HR("인사/총무"),
     SALES("영업"),
@@ -20,7 +20,7 @@ public enum Task implements EnumMapper{
 
     private String title;
 
-    Task(String  title){
+    TASK(String  title){
         this.title = title;
     }
 

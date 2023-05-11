@@ -1,7 +1,7 @@
 package com.recruit.usermate.service.user;
 
 import com.recruit.commonmate.util.GlobalException;
-import com.recruit.commonmate.util.Code;
+import com.recruit.commonmate.enums.CODE;
 import com.recruit.usermate.domain.user.User;
 import com.recruit.usermate.domain.user.UserRepository;
 import com.recruit.usermate.web.dto.LoginDTO;
@@ -36,14 +36,14 @@ public class UserService {
     @Transactional
     public UserDTO save(SignupDTO dto){
         if (userRepository.existsByloginId(dto.getLoginId()))
-            throw new GlobalException(Code.DUPLICATE_ID);
+            throw new GlobalException(CODE.DUPLICATE_ID);
         return userMapper.toUserDTO(userRepository.save(dto.toEntity(encoder.encode(dto.getPassword()))));
     }
 
     @Transactional
     public void delete(Long id){
         if (!userRepository.existsById(id))
-            throw new GlobalException(Code.USER_NOT_FOUND);
+            throw new GlobalException(CODE.USER_NOT_FOUND);
         userRepository.deleteById(id);
     }
 
@@ -51,7 +51,7 @@ public class UserService {
     public UserDTO update(SignupDTO dto){
         User user = userRepository.findByloginId(dto.getLoginId());
         if (user == null)
-            throw new GlobalException(Code.USER_NOT_FOUND);
+            throw new GlobalException(CODE.USER_NOT_FOUND);
         return userMapper.toUserDTO(userRepository.save(
                 dto.toEntity(user.getUserId(),user.getLoginId(),user.getPassword(),user.getGrade())));
     }

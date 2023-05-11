@@ -3,7 +3,7 @@ package com.recruit.commonmate.web;
 import com.recruit.commonmate.comcode.dto.EnumDTO;
 import com.recruit.commonmate.response.ResponseData;
 import com.recruit.commonmate.response.ResponseError;
-import com.recruit.commonmate.util.Code;
+import com.recruit.commonmate.enums.CODE;
 import com.recruit.commonmate.comcode.EnumFactory;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -66,7 +66,7 @@ public class JsonController {
 
     @GetMapping("/error")
     private ResponseError error(){
-        return ResponseError.of(Code.INTERNAL_ERROR);
+        return ResponseError.of(CODE.INTERNAL_ERROR);
     }
 
 }

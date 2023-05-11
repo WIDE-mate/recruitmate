@@ -1,6 +1,6 @@
 package com.recruit.usermate.web.dto;
 
-import com.recruit.commonmate.comcode.enums.Grade;
+import com.recruit.commonmate.comcode.enums.GRADE;
 import com.recruit.usermate.domain.user.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
@@ -19,10 +19,10 @@ public class LoginDTO {
     @Schema(title = "패스워드")
     private String password;
     @Schema(title = "등급")
-    private Grade grade;
+    private GRADE grade;
 
     @Builder
-    public LoginDTO(Long userId, String loginId, String password, Grade grade) {
+    public LoginDTO(Long userId, String loginId, String password, GRADE grade) {
         this.userId = userId;
         this.loginId = loginId;
         this.password = password;
