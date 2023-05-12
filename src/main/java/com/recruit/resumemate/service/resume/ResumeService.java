@@ -2,24 +2,25 @@ package com.recruit.resumemate.service.resume;
 
 import com.recruit.commonmate.enums.CODE;
 import com.recruit.commonmate.global.GlobalException;
+import com.recruit.recruitmate.domain.recruit.RecruitRepository;
 import com.recruit.resumemate.domain.resume.ResumeRepository;
 import com.recruit.resumemate.web.dto.ResumeDTO;
+import com.recruit.resumemate.web.dto.ResumeJoinDTO;
 import com.recruit.resumemate.web.dto.ResumeMapper;
-import com.recruit.resumemate.web.dto.ResumeValidDTO;
+import com.recruit.usermate.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.plaf.PanelUI;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class ResumeService {
 
+    private final UserRepository userRepository;
+    private final RecruitRepository recruitRepository;
     private final ResumeRepository resumeRepository;
     private final ResumeMapper resumeMapper;
 
@@ -46,21 +47,32 @@ public class ResumeService {
         resumeRepository.deleteById(resumeId);
     }
 
-    // 삭세 정보 가져오는걸로 변경해야함
+    // 상세 정보 가져오는걸로 변경해야함
     @Transactional
-    public ResumeDTO getResume(Long resumeId){
-        return resumeRepository.findById(resumeId)
-                .map(resumeMapper::toResumeDTO)
-                .orElse(null);
+    public ResumeJoinDTO getResume(Long resumeId){
+        return null;
+//        return resumeRepository.findById(resumeId)
+//                .map(resumeMapper::toResumeDTO)
+//                .orElse(null);
     }
 
-    //본인 이력서 => 보안이 필요하니 User에서?
+    @Transactional
+    public List<ResumeDTO> getResumeByUser(Long userId){
+        if (!userRepository.existsById(userId))
+            throw new GlobalException(CODE.USER_NOT_FOUND);
+        return resumeRepository.findAllByUserUserId(userId, Sort.by("creDate").descending());
+    }
 
     @Transactional
-    public List<ResumeDTO> getAllResuem(){
-        return resumeRepository.findAll().stream()
-                .map(resumeMapper::toResumeDTO)
-                .collect(Collectors.toList());
+    public List<ResumeDTO> getResumeByRecruit(Long recruitId){
+        if (!recruitRepository.existsById(recruitId))
+            throw new GlobalException(CODE.RECRUIT_NOT_FOUND);
+        return resumeRepository.findAllByRecruitRecruitId(recruitId, Sort.by("creDate").descending());
+    }
+
+    @Transactional
+    public List<ResumeDTO> getAllResume(){
+        return resumeRepository.findAllBy(Sort.by("creDate").descending());
     }
 
 }

@@ -57,21 +57,21 @@ public class UserController {
         return ResponseData.of("1");
     }
 
-    @Operation(summary = "로그인 사용자 정보 조회 API",
-            description = "현재 로그인한 사용자 정보 반환")
-    @GetMapping("/me/{loginKey}")
-    public ResponseData<UserDTO> getMe(@Parameter(hidden = true) @Login SessionUser user,
-            @Parameter(name = "loginKey", description = "로그인 키", required = true) @PathVariable String loginKey){
-        httpSessionException(loginKey, user);
-        return ResponseData.of(userService.getUser(user.getUserId()));
-    }
-
     @Operation(summary = "특정 사용자 정보 조회 API",
             description = "특정 사용자 정보 반환")
     @GetMapping("/{userId}")
     public ResponseData<UserDTO> getUser(
             @Parameter(name = "userId", description = "유저 번호", required = true) @PathVariable Long userId){
         return ResponseData.of(userService.getUser(userId));
+    }
+
+    @Operation(summary = "로그인 사용자 정보 조회 API",
+            description = "현재 로그인한 사용자 정보 반환")
+    @GetMapping("/get-me/{loginKey}")
+    public ResponseData<UserDTO> getMe(@Parameter(hidden = true) @Login SessionUser user,
+            @Parameter(name = "loginKey", description = "로그인 키", required = true) @PathVariable String loginKey){
+        httpSessionException(loginKey, user);
+        return ResponseData.of(userService.getUser(user.getUserId()));
     }
 
     @Operation(summary = "모든 사용자 정보 조회 API",

@@ -1,5 +1,6 @@
 package com.recruit.configmate;
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.recruit.commonmate.comcode.EnumFactory;
 import com.recruit.commonmate.comcode.dto.EnumMapper;
 import org.jasypt.encryption.StringEncryptor;
@@ -10,10 +11,20 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.Set;
 
 @Configuration
 public class AppConfig {
+
+//    @PersistenceContext
+//    private EntityManager entityManager;
+//
+//    @Bean
+//    public JPAQueryFactory jpaQueryFactory(){
+//        return new JPAQueryFactory(entityManager);
+//    }
 
     @Bean
     public BCryptPasswordEncoder encoder(){

@@ -60,7 +60,7 @@ public class RecruitController {
     @GetMapping("/cnt-career")
     public ResponseData<Map<String,Long>> countCareer(@Parameter(name = "period", description = "채용 만료 기간")
             @RequestParam(name = "period", defaultValue = "${now}") LocalDate period){
-        return ResponseData.of(recruitService.countCareer(period));
+        return ResponseData.of(recruitService.cntCareer(period));
     }
     
 

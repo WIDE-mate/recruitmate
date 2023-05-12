@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -26,7 +25,7 @@ public class UserService {
 
     @Transactional
     public LoginDTO login(LoginDTO dto){
-        User user = userRepository.findByloginId(dto.getLoginId());
+        User user = userRepository.findByLoginId(dto.getLoginId());
         if (user != null && encoder.matches(dto.getPassword(),user.getPassword()))
             return userMapper.toLoginDTO(user);
         else
@@ -35,14 +34,14 @@ public class UserService {
 
     @Transactional
     public UserDTO userSave(SignupDTO dto){
-        if (userRepository.existsByloginId(dto.getLoginId()))
+        if (userRepository.existsByLoginId(dto.getLoginId()))
             throw new GlobalException(CODE.DUPLICATE_ID);
         return userMapper.toUserDTO(userRepository.save(dto.toEntity(encoder.encode(dto.getPassword()))));
     }
 
     @Transactional
     public UserDTO userUpdate(SignupDTO dto){
-        User user = userRepository.findByloginId(dto.getLoginId());
+        User user = userRepository.findByLoginId(dto.getLoginId());
         if (user == null)
             throw new GlobalException(CODE.USER_NOT_FOUND);
         return userMapper.toUserDTO(userRepository.save(
@@ -65,14 +64,12 @@ public class UserService {
 
     @Transactional
     public List<UserDTO> getAllUser(){
-        return userRepository.findAll().stream()
-                .map(userMapper::toUserDTO)
-                .collect(Collectors.toList());
+        return userRepository.findAllBy();
     }
 
     @Transactional
     public boolean dupliId(String loginId){
-        return userRepository.existsByloginId(loginId);
+        return userRepository.existsByLoginId(loginId);
     }
 
 }

@@ -3,22 +3,24 @@ package com.recruit.resumemate.web.dto;
 import com.recruit.commonmate.comcode.enums.GENDER;
 import com.recruit.commonmate.comcode.enums.STATE;
 import com.recruit.commonmate.enums.CHECK;
-import com.recruit.commonmate.enums.CODE;
-import com.recruit.commonmate.global.GlobalException;
 import com.recruit.recruitmate.domain.recruit.Recruit;
-import com.recruit.recruitmate.domain.recruit.RecruitRepository;
-import com.recruit.resumemate.domain.resume.Resume;
+import com.recruit.resumemate.domain.activity.Activity;
+import com.recruit.resumemate.domain.education.Education;
+import com.recruit.resumemate.domain.info.Info;
+import com.recruit.resumemate.domain.license.License;
 import com.recruit.usermate.domain.user.User;
-import com.recruit.usermate.domain.user.UserRepository;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
-@Schema(title = "ResumeDTO" , description = "이력서 DTO")
+@Schema(title = "ResumeJoinDTO" , description = "이력서 및 상세정보 DTO")
 @Getter
 @NoArgsConstructor
-public class ResumeDTO {
+public class ResumeJoinDTO {
 
     @Schema(title = "이력서 번호")
     private Long resumeId;
@@ -46,10 +48,19 @@ public class ResumeDTO {
     private LocalDate creDate;
     @Schema(title = "등록상태")
     private STATE state;
+    @Schema(title = "교육")
+    private List<Education> educations;
+    @Schema(title = "대외활동")
+    private List<Activity> activities;
+    @Schema(title = "자격증")
+    private List<License> licenses;
+    @Schema(title = "자기소개서")
+    private List<Info> info;
 
     @Builder
-    public ResumeDTO(Long resumeId, Long userId, Long recruitId, GENDER gender, String engName, String email, String addr, String addrDetail, String zip,
-                CHECK military, String pic, LocalDate creDate, STATE state) {
+    public ResumeJoinDTO(Long resumeId, Long userId, Long recruitId, GENDER gender, String engName, String email,
+            String addr, String addrDetail, String zip, CHECK military, String pic, LocalDate creDate, STATE state,
+            List<Education> educations, List<Activity> activities, List<License> licenses, List<Info> info) {
         this.resumeId = resumeId;
         this.userId = userId;
         this.recruitId = recruitId;
@@ -63,6 +74,10 @@ public class ResumeDTO {
         this.pic = pic;
         this.creDate = creDate;
         this.state = state;
+        this.educations = educations;
+        this.activities = activities;
+        this.licenses = licenses;
+        this.info = info;
     }
 
 //    public Resume toEntity(UserRepository userRepository){

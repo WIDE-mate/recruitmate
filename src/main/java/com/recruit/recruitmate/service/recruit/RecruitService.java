@@ -8,6 +8,7 @@ import com.recruit.recruitmate.web.dto.RecruitDTO;
 import com.recruit.recruitmate.web.dto.RecruitMapper;
 import com.recruit.recruitmate.web.dto.RecruitValidDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,13 +51,11 @@ public class RecruitService {
 
     @Transactional
     public List<RecruitDTO> getAllRecruit(){
-        return recruitRepository.findAll().stream()
-                .map(recruitMapper::toRecruitDTO)
-                .collect(Collectors.toList());
+        return recruitRepository.findAllBy(Sort.by("period").descending());
     }
 
     @Transactional
-    public Map<String,Long> countCareer(LocalDate date){
+    public Map<String,Long> cntCareer(LocalDate date){
         return Arrays.stream(CAREER.values())
                 .collect(Collectors.toMap(CAREER::getTitle,
                         career ->

@@ -11,7 +11,8 @@ public interface ResumeMapper {
     ResumeMapper INSTANCE = Mappers.getMapper(ResumeMapper.class);
 
     @Mapping(source = "resumeId", target = "resumeId")
-    @Mapping(source = "user", target = "user")
+    @Mapping(source = "user.userId", target = "userId")
+    @Mapping(source = "recruit.recruitId", target = "recruitId")
     @Mapping(source = "gender", target = "gender")
     @Mapping(source = "engName", target = "engName")
     @Mapping(source = "email", target = "email")
@@ -21,5 +22,7 @@ public interface ResumeMapper {
     @Mapping(source = "military", target = "military")
     @Mapping(source = "pic", target = "pic")
     @Mapping(source = "creDate", target = "creDate")
+    @Mapping(source = "state", target = "state")
     ResumeDTO toResumeDTO(Resume resume);
+
 }
