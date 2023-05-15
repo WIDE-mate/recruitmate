@@ -8,9 +8,9 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
-public interface ResumesMapper {
+public interface ResumeMapper {
 
-    ResumesMapper INSTANCE = Mappers.getMapper(ResumesMapper.class);
+    ResumeMapper INSTANCE = Mappers.getMapper(ResumeMapper.class);
 
     // entity to dto
 
@@ -27,14 +27,10 @@ public interface ResumesMapper {
     @Mapping(source = "pic", target = "pic")
     @Mapping(source = "creDate", target = "creDate")
     @Mapping(source = "state", target = "state")
-    @Mapping(ignore = true, target = "educations")
-    @Mapping(ignore = true, target = "activities")
-    @Mapping(ignore = true, target = "licenses")
-    @Mapping(ignore = true, target = "info")
-//    @Mapping(source = "educations", target = "educations")
-//    @Mapping(source = "activities", target = "activities")
-//    @Mapping(source = "licenses", target = "licenses")
-//    @Mapping(source = "info", target = "info")
+    @Mapping(source = "educations", target = "educations")
+    @Mapping(source = "activities", target = "activities")
+    @Mapping(source = "licenses", target = "licenses")
+    @Mapping(source = "info", target = "info")
     ResumeJoinDTO toResumeJoinDTO(Resume resume);
 
     // dto to entity

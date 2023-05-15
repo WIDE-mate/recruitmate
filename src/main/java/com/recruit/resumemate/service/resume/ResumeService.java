@@ -4,7 +4,7 @@ import com.recruit.commonmate.enums.CODE;
 import com.recruit.commonmate.global.GlobalException;
 import com.recruit.recruitmate.domain.recruit.RecruitRepository;
 import com.recruit.resumemate.domain.resume.ResumeRepository;
-import com.recruit.resumemate.web.dto.ResumesMapper;
+import com.recruit.resumemate.web.dto.ResumeMapper;
 import com.recruit.resumemate.web.dto.resume.ResumeDTO;
 import com.recruit.resumemate.web.dto.resume.ResumeJoinDTO;
 import com.recruit.resumemate.web.dto.resume.ResumeValidDTO;
@@ -23,7 +23,7 @@ public class ResumeService {
     private final UserRepository userRepository;
     private final RecruitRepository recruitRepository;
     private final ResumeRepository resumeRepository;
-    private final ResumesMapper resumesMapper;
+    private final ResumeMapper resumesMapper;
 
     @Transactional
     public String resumeSave(ResumeValidDTO dto) {
