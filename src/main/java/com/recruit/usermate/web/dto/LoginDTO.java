@@ -1,7 +1,6 @@
 package com.recruit.usermate.web.dto;
 
 import com.recruit.commonmate.comcode.enums.GRADE;
-import com.recruit.usermate.domain.user.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,8 +28,4 @@ public class LoginDTO {
         this.grade = grade;
     }
 
-    public User toEntity(){
-        return User.builder().userId(userId).loginId(loginId).password(password)
-                .grade(grade).build();
-    }
 }

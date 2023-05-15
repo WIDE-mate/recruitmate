@@ -42,10 +42,4 @@ public class RecruitDTO {
         this.task = task;
         this.career = career;
     }
-
-    public Recruit toEntity(){
-        return Recruit.builder().recruitId(recruitId).reTitle(reTitle).reContent(reContent)
-                .period(period).requires(requires).task(task).career(career).build();
-    }
-
 }

@@ -1,4 +1,4 @@
-package com.recruit.resumemate.web.dto;
+package com.recruit.resumemate.web.dto.resume;
 
 import com.recruit.commonmate.comcode.enums.GENDER;
 import com.recruit.commonmate.comcode.enums.STATE;
@@ -64,26 +64,5 @@ public class ResumeDTO {
         this.creDate = creDate;
         this.state = state;
     }
-
-//    public Resume toEntity(UserRepository userRepository){
-//        User user = userRepository.findById(userId)
-//                .orElseThrow(() -> new GlobalException(CODE.USER_NOT_FOUND));
-//        return Resume.builder().resumeId(resumeId).user(user).recruit(null).gender(gender).engName(engName).email(email)
-//                .addr(addr).addrDetail(addrDetail).zip(zip).military(military).pic(pic).creDate(creDate).state(state).build();
-//    }
-//    public Resume toEntity(RecruitRepository recruitRepository){
-//        Recruit recruit = recruitRepository.findById(recruitId)
-//                .orElseThrow(() -> new GlobalException(CODE.RECRUIT_NOT_FOUND));
-//        return Resume.builder().resumeId(resumeId).user(null).recruit(recruit).gender(gender).engName(engName).email(email)
-//                .addr(addr).addrDetail(addrDetail).zip(zip).military(military).pic(pic).creDate(creDate).state(state).build();
-//    }
-//    public Resume toEntity(UserRepository userRepository, RecruitRepository recruitRepository){
-//        User user = userRepository.findById(userId)
-//                .orElseThrow(() -> new GlobalException(CODE.USER_NOT_FOUND));
-//        Recruit recruit = recruitRepository.findById(recruitId)
-//                .orElseThrow(() -> new GlobalException(CODE.RECRUIT_NOT_FOUND));
-//        return Resume.builder().resumeId(resumeId).user(user).recruit(recruit).gender(gender).engName(engName).email(email)
-//                .addr(addr).addrDetail(addrDetail).zip(zip).military(military).pic(pic).creDate(creDate).state(state).build();
-//    }
 
 }

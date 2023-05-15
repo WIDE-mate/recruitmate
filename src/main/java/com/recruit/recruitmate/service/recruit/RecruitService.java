@@ -24,15 +24,17 @@ public class RecruitService {
     private final RecruitMapper recruitMapper;
 
     @Transactional
-    public RecruitDTO recruitSave(RecruitValidDTO dto){
-        return recruitMapper.toRecruitDTO(recruitRepository.save(dto.toEntity()));
+    public String recruitSave(RecruitValidDTO dto){
+        return recruitRepository.save(recruitMapper.toEntity(dto))
+                .getRecruitId().toString();
     }
 
     @Transactional
-    public RecruitDTO recruitUpdate(RecruitValidDTO dto){
+    public String recruitUpdate(RecruitValidDTO dto){
         if (!recruitRepository.existsById(dto.getRecruitId()))
             throw new GlobalException(CODE.RECRUIT_NOT_FOUND);
-        return recruitMapper.toRecruitDTO(recruitRepository.save(dto.toEntity()));
+        return recruitRepository.save(recruitMapper.toEntity(dto))
+                .getRecruitId().toString();
     }
 
     @Transactional

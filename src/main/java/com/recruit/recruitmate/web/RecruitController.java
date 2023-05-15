@@ -26,13 +26,13 @@ public class RecruitController {
     @Operation(summary = "채용 정보 저장 API",description = "성공 시에 채용 ID 반환")
     @PostMapping("/save")
     public ResponseData<String> recruitSave(@RequestBody @Valid RecruitValidDTO dto){
-        return ResponseData.of(recruitService.recruitSave(dto).getRecruitId().toString());
+        return ResponseData.of(recruitService.recruitSave(dto));
     }
 
     @Operation(summary = "채용 정보 수정 API",description = "성공 시에 채용 ID 반환")
     @PutMapping("/update")
     public ResponseData<String> recruitUpdate(@RequestBody @Valid RecruitValidDTO dto){
-        return ResponseData.of(recruitService.recruitUpdate(dto).getRecruitId().toString());
+        return ResponseData.of(recruitService.recruitUpdate(dto));
     }
 
     @Operation(summary = "채용 정보 삭제 API",description = "성공시에 1을 반환")

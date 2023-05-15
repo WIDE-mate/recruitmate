@@ -4,10 +4,7 @@ import com.recruit.commonmate.global.GlobalException;
 import com.recruit.commonmate.enums.CODE;
 import com.recruit.usermate.domain.user.User;
 import com.recruit.usermate.domain.user.UserRepository;
-import com.recruit.usermate.web.dto.LoginDTO;
-import com.recruit.usermate.web.dto.SignupDTO;
-import com.recruit.usermate.web.dto.UserDTO;
-import com.recruit.usermate.web.dto.UserMapper;
+import com.recruit.usermate.web.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,26 +23,24 @@ public class UserService {
     @Transactional
     public LoginDTO login(LoginDTO dto){
         User user = userRepository.findByLoginId(dto.getLoginId());
-        if (user != null && encoder.matches(dto.getPassword(),user.getPassword()))
-            return userMapper.toLoginDTO(user);
-        else
-            return null;
+        return user != null && encoder.matches(dto.getPassword(),user.getPassword()) ?
+                userMapper.toLoginDTO(user) : null;
     }
 
     @Transactional
-    public UserDTO userSave(SignupDTO dto){
+    public String userSave(UserValidDTO dto){
         if (userRepository.existsByLoginId(dto.getLoginId()))
             throw new GlobalException(CODE.DUPLICATE_ID);
-        return userMapper.toUserDTO(userRepository.save(dto.toEntity(encoder.encode(dto.getPassword()))));
+        return userRepository.save(userMapper.toEntity(dto, encoder.encode(dto.getPassword())))
+                .getUserId().toString();
     }
 
     @Transactional
-    public UserDTO userUpdate(SignupDTO dto){
-        User user = userRepository.findByLoginId(dto.getLoginId());
-        if (user == null)
-            throw new GlobalException(CODE.USER_NOT_FOUND);
-        return userMapper.toUserDTO(userRepository.save(
-                dto.toEntity(user.getUserId(),user.getLoginId(),user.getPassword(),user.getGrade())));
+    public String userUpdate(UserValidDTO dto){
+        User user = userRepository.findById(dto.getUserId())
+                .orElseThrow(() -> new GlobalException(CODE.USER_NOT_FOUND));
+        return userRepository.save(userMapper.toEntity(dto,user))
+                .getUserId().toString();
     }
 
     @Transactional

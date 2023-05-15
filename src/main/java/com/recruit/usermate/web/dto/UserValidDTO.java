@@ -2,21 +2,18 @@ package com.recruit.usermate.web.dto;
 
 import com.recruit.commonmate.comcode.enums.GENDER;
 import com.recruit.commonmate.comcode.enums.GRADE;
-import com.recruit.usermate.domain.user.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
-@Schema(title = "SignupDTO",description = "회원 등록 및 수정 관련 DTO")
+@Schema(title = "UserValidDTO",description = "회원 등록 및 수정 관련 DTO")
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
-public class SignupDTO {
+public class UserValidDTO {
 
     @Schema(title = "유저번호")
-    @With
     private Long userId;
 
     @Schema(title = "아이디")
@@ -62,12 +59,11 @@ public class SignupDTO {
 
     @Schema(title = "등급")
     private GRADE grade;
-    @Schema(title = "로그인키")
-    private String loginKey;
+
 
     @Builder
-    public SignupDTO(Long userId, String loginId, String password, String name, LocalDate birth, String tel, String loginKey,
-            String email, String addr, String addrDetail, String zip, GENDER gender, GRADE grade) {
+    public UserValidDTO(Long userId, String loginId, String password, String name, LocalDate birth, String tel,
+                        String email, String addr, String addrDetail, String zip, GENDER gender, GRADE grade) {
         this.userId = userId;
         this.loginId = loginId;
         this.password = password;
@@ -80,26 +76,6 @@ public class SignupDTO {
         this.zip = zip;
         this.gender = gender;
         this.grade = grade;
-        this.loginKey = loginKey;
-    }
-
-    public User toEntity(){
-        return User.builder().userId(userId).loginId(loginId).password(password)
-                .name(name).birth(birth).tel(tel).email(email).addr(addr).addrDetail(addrDetail).zip(zip)
-                .gender(gender).grade(grade).build();
-    }
-
-    public User toEntity(String pw){
-        return User.builder().userId(userId).loginId(loginId).password(pw)
-                .name(name).birth(birth).tel(tel).email(email).addr(addr).addrDetail(addrDetail).zip(zip)
-                .gender(gender).grade(GRADE.MEMBER).build();
-    }
-
-    public User toEntity(Long id, String lid, String pw, GRADE gd){
-        return User.builder().userId(id).loginId(lid).password(pw)
-                .name(name).birth(birth).tel(tel).email(email).addr(addr).addrDetail(addrDetail).zip(zip)
-                .gender(gender).grade(gd).build();
-
     }
 
 }

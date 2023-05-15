@@ -1,14 +1,12 @@
-package com.recruit.resumemate.web.dto;
+package com.recruit.resumemate.web.dto.resume;
 
 import com.recruit.commonmate.comcode.enums.GENDER;
 import com.recruit.commonmate.comcode.enums.STATE;
 import com.recruit.commonmate.enums.CHECK;
-import com.recruit.recruitmate.domain.recruit.Recruit;
-import com.recruit.resumemate.domain.activity.Activity;
-import com.recruit.resumemate.domain.education.Education;
-import com.recruit.resumemate.domain.info.Info;
-import com.recruit.resumemate.domain.license.License;
-import com.recruit.usermate.domain.user.User;
+import com.recruit.resumemate.web.dto.activity.ActivityDTO;
+import com.recruit.resumemate.web.dto.education.EducationDTO;
+import com.recruit.resumemate.web.dto.info.InfoDTO;
+import com.recruit.resumemate.web.dto.license.LicenseDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Getter;
@@ -49,18 +47,18 @@ public class ResumeJoinDTO {
     @Schema(title = "등록상태")
     private STATE state;
     @Schema(title = "교육")
-    private List<Education> educations;
+    private List<EducationDTO> educations;
     @Schema(title = "대외활동")
-    private List<Activity> activities;
+    private List<ActivityDTO> activities;
     @Schema(title = "자격증")
-    private List<License> licenses;
+    private List<LicenseDTO> licenses;
     @Schema(title = "자기소개서")
-    private List<Info> info;
+    private List<InfoDTO> info;
 
     @Builder
     public ResumeJoinDTO(Long resumeId, Long userId, Long recruitId, GENDER gender, String engName, String email,
             String addr, String addrDetail, String zip, CHECK military, String pic, LocalDate creDate, STATE state,
-            List<Education> educations, List<Activity> activities, List<License> licenses, List<Info> info) {
+            List<EducationDTO> educations, List<ActivityDTO> activities, List<LicenseDTO> licenses, List<InfoDTO> info) {
         this.resumeId = resumeId;
         this.userId = userId;
         this.recruitId = recruitId;
@@ -79,26 +77,5 @@ public class ResumeJoinDTO {
         this.licenses = licenses;
         this.info = info;
     }
-
-//    public Resume toEntity(UserRepository userRepository){
-//        User user = userRepository.findById(userId)
-//                .orElseThrow(() -> new GlobalException(CODE.USER_NOT_FOUND));
-//        return Resume.builder().resumeId(resumeId).user(user).recruit(null).gender(gender).engName(engName).email(email)
-//                .addr(addr).addrDetail(addrDetail).zip(zip).military(military).pic(pic).creDate(creDate).state(state).build();
-//    }
-//    public Resume toEntity(RecruitRepository recruitRepository){
-//        Recruit recruit = recruitRepository.findById(recruitId)
-//                .orElseThrow(() -> new GlobalException(CODE.RECRUIT_NOT_FOUND));
-//        return Resume.builder().resumeId(resumeId).user(null).recruit(recruit).gender(gender).engName(engName).email(email)
-//                .addr(addr).addrDetail(addrDetail).zip(zip).military(military).pic(pic).creDate(creDate).state(state).build();
-//    }
-//    public Resume toEntity(UserRepository userRepository, RecruitRepository recruitRepository){
-//        User user = userRepository.findById(userId)
-//                .orElseThrow(() -> new GlobalException(CODE.USER_NOT_FOUND));
-//        Recruit recruit = recruitRepository.findById(recruitId)
-//                .orElseThrow(() -> new GlobalException(CODE.RECRUIT_NOT_FOUND));
-//        return Resume.builder().resumeId(resumeId).user(user).recruit(recruit).gender(gender).engName(engName).email(email)
-//                .addr(addr).addrDetail(addrDetail).zip(zip).military(military).pic(pic).creDate(creDate).state(state).build();
-//    }
 
 }
