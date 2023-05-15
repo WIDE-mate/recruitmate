@@ -11,6 +11,7 @@ import com.recruit.resumemate.web.dto.resume.ResumeJoinDTO;
 import com.recruit.resumemate.web.dto.resume.ResumeValidDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,7 @@ import java.util.List;
 
 import static com.recruit.commonmate.global.GlobalVariables.LOGINKEY;
 
+@Tag(name = "이력서 APi", description = "이력서 정보 API")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/resume")
