@@ -33,7 +33,7 @@ public class RecruitDTO {
 
     @Builder
     public RecruitDTO(Long recruitId, String reTitle, String reContent, LocalDate period,
-                      REQUIRES requires, TASK task, CAREER career) {
+                REQUIRES requires, TASK task, CAREER career) {
         this.recruitId = recruitId;
         this.reTitle = reTitle;
         this.reContent = reContent;
@@ -42,10 +42,4 @@ public class RecruitDTO {
         this.task = task;
         this.career = career;
     }
-
-    public Recruit toEntity(){
-        return Recruit.builder().recruitId(recruitId).reTitle(reTitle).reContent(reContent)
-                .period(period).requires(requires).task(task).career(career).build();
-    }
-
 }

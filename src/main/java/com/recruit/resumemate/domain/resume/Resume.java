@@ -6,11 +6,12 @@ import com.recruit.commonmate.enums.CHECK;
 import com.recruit.recruitmate.domain.recruit.Recruit;
 import com.recruit.resumemate.domain.activity.Activity;
 import com.recruit.resumemate.domain.education.Education;
+import com.recruit.resumemate.domain.info.Info;
+import com.recruit.resumemate.domain.license.License;
 import com.recruit.usermate.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -55,11 +56,15 @@ public class Resume {
     private List<Education> educations;
     @OneToMany
     private List<Activity> activities;
+    @OneToMany
+    private List<License> licenses;
+    @OneToMany
+    private List<Info> info;
 
     @Builder
     public Resume(Long resumeId, User user, Recruit recruit, GENDER gender, String engName, String email,
             String addr, String addrDetail, String zip, CHECK military, String pic, LocalDate creDate, STATE state,
-            List<Education> educations, List<Activity> activities) {
+            List<Education> educations, List<Activity> activities, List<License> licenses, List<Info> info) {
         this.resumeId = resumeId;
         this.user = user;
         this.recruit = recruit;
@@ -75,6 +80,8 @@ public class Resume {
         this.state = state;
         this.educations = educations;
         this.activities = activities;
+        this.licenses = licenses;
+        this.info = info;
     }
 
 }

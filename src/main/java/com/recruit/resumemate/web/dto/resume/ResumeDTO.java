@@ -1,11 +1,15 @@
-package com.recruit.resumemate.web.dto;
+package com.recruit.resumemate.web.dto.resume;
 
 import com.recruit.commonmate.comcode.enums.GENDER;
 import com.recruit.commonmate.comcode.enums.STATE;
 import com.recruit.commonmate.enums.CHECK;
+import com.recruit.commonmate.enums.CODE;
+import com.recruit.commonmate.global.GlobalException;
 import com.recruit.recruitmate.domain.recruit.Recruit;
+import com.recruit.recruitmate.domain.recruit.RecruitRepository;
 import com.recruit.resumemate.domain.resume.Resume;
 import com.recruit.usermate.domain.user.User;
+import com.recruit.usermate.domain.user.UserRepository;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
@@ -19,9 +23,9 @@ public class ResumeDTO {
     @Schema(title = "이력서 번호")
     private Long resumeId;
     @Schema(title = "유저 정보")
-    private User user;
+    private Long userId;
     @Schema(title = "이력서 정보")
-    private Recruit recruit;
+    private Long recruitId;
     @Schema(title = "성별")
     private GENDER gender;
     @Schema(title = "영어 이름")
@@ -44,11 +48,11 @@ public class ResumeDTO {
     private STATE state;
 
     @Builder
-    public ResumeDTO(Long resumeId, User user, Recruit recruit, GENDER gender, String engName, String email, String addr, String addrDetail, String zip,
+    public ResumeDTO(Long resumeId, Long userId, Long recruitId, GENDER gender, String engName, String email, String addr, String addrDetail, String zip,
                 CHECK military, String pic, LocalDate creDate, STATE state) {
         this.resumeId = resumeId;
-        this.user = user;
-        this.recruit = recruit;
+        this.userId = userId;
+        this.recruitId = recruitId;
         this.gender = gender;
         this.engName = engName;
         this.email = email;
@@ -59,11 +63,6 @@ public class ResumeDTO {
         this.pic = pic;
         this.creDate = creDate;
         this.state = state;
-    }
-
-    public Resume toEntity(){
-        return Resume.builder().resumeId(resumeId).user(user).recruit(recruit).gender(gender).engName(engName).email(email)
-                .addr(addr).addrDetail(addrDetail).zip(zip).military(military).pic(pic).creDate(creDate).state(state).build();
     }
 
 }

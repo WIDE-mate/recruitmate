@@ -2,9 +2,7 @@ package com.recruit.usermate.web.dto;
 
 import com.recruit.commonmate.comcode.enums.GENDER;
 import com.recruit.commonmate.comcode.enums.GRADE;
-import com.recruit.usermate.domain.user.User;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +10,6 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Schema(title = "UserDTO",description = "회원 정보 DTO")
-@ApiResponse
 @Getter
 @NoArgsConstructor
 public class UserDTO {
@@ -44,7 +41,7 @@ public class UserDTO {
 
     @Builder
     public UserDTO(Long userId, String loginId, String password, String name, LocalDate birth, String tel,
-                   String email, String addr, String addrDetail, String zip, GENDER gender, GRADE grade) {
+            String email, String addr, String addrDetail, String zip, GENDER gender, GRADE grade) {
         this.userId = userId;
         this.loginId = loginId;
         this.password = password;
@@ -57,13 +54,6 @@ public class UserDTO {
         this.zip = zip;
         this.gender = gender;
         this.grade = grade;
-    }
-
-
-    public User toEntity(){
-        return User.builder().userId(userId).loginId(loginId).password(password)
-                .name(name).birth(birth).tel(tel).email(email).addr(addr).addrDetail(addrDetail).zip(zip)
-                .gender(gender).grade(grade).build();
     }
 
 }

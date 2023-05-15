@@ -31,7 +31,7 @@ public class LoginController {
     @Operation(summary = "사용자 로그인 API",
             description = "로그인 정보(아이디 & 비밀번호)가 올바르면 세션을 생성하고, 생성한 세션의 키를 반환합니다. " +
                     "로그인 정보가 올바르지 않으면 세션을 생성하지 않으며, null을 반환합니다. " +
-                    "이미 로그인하였으면 강제 로그아웃 처리한다")
+                    "이미 로그인하였으면 강제 로그아웃 처리합니다")
     @PostMapping("/login")
     public ResponseData<String> login(@RequestBody LoginDTO dto){
         LoginDTO user = userService.login(dto);
@@ -43,12 +43,9 @@ public class LoginController {
         return ResponseData.of(key);
     }
 
-    @Operation(summary = "사용자 로그아웃 API",
-            description = "로그인 세션 키가 일치하면 현재 세션을 무효화하고 1을 반환")
-    @GetMapping("/logout/{loginKey}")
-    public ResponseData<String> logout(@PathVariable String loginKey){
-        if (httpSession == null || !loginKey.equals(httpSession.getAttribute(LOGINKEY)))
-            throw new GlobalException(CODE.NOT_SESSION);
+    @Operation(summary = "사용자 로그아웃 API", description = "현재 세션을 무효화하고 1을 반환")
+    @GetMapping("/logout")
+    public ResponseData<String> logout(){
         httpSession.invalidate();
         return ResponseData.of("1");
     }
